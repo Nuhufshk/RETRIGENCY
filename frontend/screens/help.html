@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@0,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../images/meditrack-logo.png" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth-guard.js"></script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-area">
+        <img src="../images/retrigency-logo.png" alt="MediTrack logo" class="logo-img" />
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a
+          >
+        </li>
+        <li>
+          <a href="patients_data.html"
+            ><i class="fa-regular fa-circle-user"></i><span>Patients</span></a
+          >
+        </li>
+        <!-- here -->
+        <li>
+          <a href="face_id.html"
+            ><ion-icon name="scan-outline"></ion-icon><span>Face ID</span></a
+          >
+        </li>
+        <li>
+          <a href="help.html" class="active"
+            ><i class="fa-solid fa-circle-question"></i><span>Help</span></a
+          >
+        </li>
+        <li>
+          <a href="settings.html"
+            ><i class="fa-solid fa-gear"></i><span>Settings</span></a
+          >
+        </li>
+        <li class="logout">
+          <a href="login_page.html"
+            ><i class="fa-solid fa-right-from-bracket"></i
+            ><span>Logout</span></a
+          >
+        </li>
+      </ul>
+      <div class="sidebar-footer"></div>
+    </div>
+    <div class="main-wrapper">
+      <div class="main-content help-content">
+        <h1>Help & Support</h1>
+        <p class="help-intro">
+          Find answers to common questions about using the Retrigency Hospital
+          System.
+        </p>
+
+        <section class="help-section">
+          <h2><i class="fa-solid fa-hospital"></i> Getting Started</h2>
+
+          <details>
+            <summary>What is Retrigency Hospital System?</summary>
+            <p>
+              Retrigency is a hospital management system designed to help staff
+              manage patient records, track admissions, and monitor hospital
+              activity. It includes features for registering patients, searching
+              records, viewing patient details, and generating reports.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I add a new patient?</summary>
+            <p>
+              Click the "Add New Patient" card on the Dashboard or the "Add
+              Patient" button on the Patients page. Fill in the required fields
+              (first name, surname, and date of birth). You can also add
+              optional details such as other names, address, gender, contact,
+              blood type, Ghana card number, emergency contacts, and a patient
+              photo. Age is calculated automatically from the date of birth.
+              Click "Add Patient" and confirm to save the record.
+            </p>
+          </details>
+
+          <details>
+            <summary>What format should the Ghana card number be in?</summary>
+            <p>
+              The Ghana card number must start with "GHA-" (for example,
+              GHA-123456789-1). The system will show an error if the number does
+              not begin with this prefix.
+            </p>
+          </details>
+        </section>
+
+        <section class="help-section">
+          <h2>
+            <i class="fa-solid fa-magnifying-glass"></i> Searching & Managing
+            Patients
+          </h2>
+
+          <details>
+            <summary>How do I search for a patient?</summary>
+            <p>
+              On the Patients page, use the search bar and choose a search type
+              from the dropdown. You can search by "All fields" (name, Patient
+              ID, or Ghana card), or limit the search to "Name", "Patient ID",
+              or "Ghana Card" only. Type your search term and the results update
+              automatically.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I view a patient's full details?</summary>
+            <p>
+              Click on any patient row in the Patients table. This opens the
+              Patient Details page, where you can see all recorded information
+              including contact details, Ghana card, emergency contacts, and
+              photo.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I discharge a patient?</summary>
+            <p>
+              Open the patient's detail page by clicking their row, then click
+              the "Discharge Patient" button. The patient's status will change
+              to "Discharged" and the update will appear across the system.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I delete a patient record?</summary>
+            <p>
+              You can delete a patient from the Patient Details page by clicking
+              "Delete Patient" and confirming in the popup, or by clicking the
+              red trash icon in the Actions column on the Patients table. You
+              will be asked to confirm before the record is permanently removed.
+            </p>
+          </details>
+        </section>
+
+        <section class="help-section">
+          <h2><i class="fa-solid fa-chart-line"></i> Dashboard & Statistics</h2>
+
+          <details>
+            <summary>What do the dashboard statistics mean?</summary>
+            <p>
+              <strong>Total Patients:</strong> The total number of patients in
+              the system. <strong>Today's Admissions:</strong> Patients admitted
+              today. <strong>Face ID Scans:</strong> Number of face
+              identification scans performed.
+              <strong>Active Cases:</strong> Patients currently in hospital with
+              "Active" status. These statistics update automatically as you add,
+              discharge, or delete patients.
+            </p>
+          </details>
+
+          <details>
+            <summary>What is the Recent Activity section?</summary>
+            <p>
+              The Recent Activity section shows recent actions such as new
+              patient registrations, patient discharges, and record deletions,
+              along with when they occurred (e.g., "5 minutes ago", "1 hour
+              ago").
+            </p>
+          </details>
+        </section>
+
+        <section class="help-section">
+          <h2><i class="fa-solid fa-camera"></i> Face ID & Security</h2>
+
+          <details>
+            <summary>What is Face ID used for?</summary>
+            <p>
+              Face ID allows staff to scan a patient's face for identification
+              purposes. This feature helps verify patient identity and can be
+              linked to patient records.
+            </p>
+          </details>
+
+          <details>
+            <summary>I forgot my password. How do I reset it?</summary>
+            <p>
+              On the login page, click "Forgot Password?" to open the password
+              retrieval form. Enter your Staff ID, email, and phone number, then
+              choose whether to receive the reset link via SMS or email.
+            </p>
+          </details>
+        </section>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../js/Scripting.js"></script>
+</body>
+</html>

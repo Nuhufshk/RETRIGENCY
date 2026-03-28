@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        BigInt   @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profile Profile?
+  patient Patient[]
+
+  @@map("users")
+}
+
+model Profile {
+  id         BigInt  @id
+  staffId    BigInt  @unique
+  firstName  String  @db.VarChar(50)
+  middleName String? @db.VarChar(50)
+  lastName   String  @db.VarChar(50)
+
+  departmentId      BigInt?
+  theme             Theme    @default(light)
+  textSize          TextSize @default(medium)
+  emailNotification Boolean  @default(true)
+  pushNotification  Boolean  @default(true)
+  smsNotification   Boolean  @default(true)
+  language          Language @default(english)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user       User        @relation(fields: [id], references: [id])
+  department Department? @relation(fields: [departmentId], references: [id])
+}
+
+model Department {
+  id        BigInt   @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profiles Profile[]
+}
+
+model Patient {
+  id                BigInt    @id @default(autoincrement())
+  doctorId          BigInt
+  firstName         String    @db.VarChar(50)
+  surname           String    @db.VarChar(50)
+  otherNames        String?   @db.VarChar(50)
+  dob               DateTime  @db.Date
+  gender            Gender
+  bloodType         BloodType
+  admissionDate     DateTime  @db.Date
+  status            Status    @default(Active)
+  address           String    @db.VarChar(255)
+  contact           String    @db.VarChar(15)
+  ghanaCard         String?   @db.VarChar(20)
+  emergencyContact1 String    @db.VarChar(15)
+  emergencyContact2 String?   @db.VarChar(15)
+  photo             String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  doctor    User?    @relation(fields: [doctorId], references: [id])
+
+  @@map("patients")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  title     String   @db.VarChar(100)
+  message   String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("notifications")
+}
+
+enum TextSize {
+  small
+  medium
+  large
+  xLarge
+}
+
+enum Theme {
+  light
+  dark
+}
+
+enum Language {
+  english
+  french
+  spanish
+  german
+}
+
+enum Status {
+  Active
+  Inactive
+}
+
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+enum BloodType {
+  A
+  B
+  AB
+  O
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}

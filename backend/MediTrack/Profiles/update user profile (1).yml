@@ -1,0 +1,25 @@
+info:
+  name: update user profile (1)
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: http://localhost:3000/api/profiles/1/settings
+  body:
+    type: json
+    data: |-
+      {
+         "theme": "light",
+          "textSize": "medium",
+          "emailNotification": true,
+          "pushNotification": true,
+          "smsNotification": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,25 @@
+info:
+  name: update user profile
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:3000/api/profiles/5
+  body:
+    type: json
+    data: |-
+      {
+          "staffId": 1006,
+          "firstName": "Kwame",
+          "middleName": "Sarfo",
+          "lastName": "Biney",
+          "departmentId": 2
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

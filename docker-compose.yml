@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: meditrack_user
+      POSTGRES_PASSWORD: meditrack_password
+      POSTGRES_DB: meditrack_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - meditrack_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://meditrack_user:meditrack_password@db:5432/meditrack_db?schema=public
+      - JWT_SECRET=meditrack_dev_secret_key_change_me
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
+    # Wait for DB, run migrations, then start the dev server
+    command: sh -c "npx prisma migrate dev --name init && npm run start"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - meditrack_network
+
+  frontend:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+    networks:
+      - meditrack_network
+
+volumes:
+  postgres_data:
+
+networks:
+  meditrack_network:
+    driver: bridge

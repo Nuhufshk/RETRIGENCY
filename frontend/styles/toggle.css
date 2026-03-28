@@ -1,0 +1,35 @@
+:root {
+    --base-color: white;
+    --base-variant: #f0f0f0;
+    --text-color: black;
+    --secondary-text-color: #555;
+    --primary-color: #7e8081;
+    --accent-color: #007BFF;   
+}
+.darkmode {
+    --base-color: #151b24;
+    --base-variant: #1e2733;
+    --text-color: #f3f6fa;
+    --secondary-text-color: #aaaaaa;
+    --primary-color: #7e8081;
+    --accent-color: #007BFF;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-family: "Poppins", sans-serif;
+
+}
+body {
+    min-height: 100vh;
+    background-color: var(--base-color);
+    color: var(--text-color);
+}
+
+/* Respect global dark mode toggle (body.dark) */
+body.dark {
+    background-color: #151b24;
+    color: #f3f6fa;
+}

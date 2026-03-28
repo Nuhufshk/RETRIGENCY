@@ -1,0 +1,35 @@
+info:
+  name: Update a patient
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: http://localhost:3000/api/patients/6
+  body:
+    type: json
+    data: |-
+      {
+            "doctorId": 1,
+            "firstName": "Kwesi",
+            "surname": "Arthur",
+            "otherNames": "Emmanuel",
+            "dob": "2000-01-10T00:00:00.000Z",
+            "gender": "Male",
+            "bloodType": "B_NEGATIVE",
+            "admissionDate": "2026-03-03T00:00:00.000Z",
+            "address": "Tema, Greater Accra",
+            "status":"Active",
+            "contact": "0243234567",
+            "ghanaCard": null,
+            "emergencyContact1": "0249654321",
+            "emergencyContact2": null,
+            "photo": null
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

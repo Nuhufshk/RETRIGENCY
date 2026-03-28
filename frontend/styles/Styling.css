@@ -1,0 +1,504 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: "Poppins", sans-serif; 
+}
+body { 
+    background-color: #f8f9fa; 
+    color: #1f2937; 
+}
+/* Global dark mode for app pages that use sidebar layout */
+body.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+body.dark .sidebar {
+    background: #0d1218;
+    color: #ffffff;
+}
+body.dark .main-content {
+    background-color: #1a1a1a;
+}
+body.dark .top-nav {
+    background: #2a2a2a;
+    border-bottom: 1px solid #444;
+}
+body.dark .top-nav-text {
+    color: #f5f5f5;
+}
+body.dark .top-nav-icons a {
+    color: #e5e7eb;
+}
+body.dark .top-nav-icons i {
+    color: #e5e7eb;
+}
+body.dark .content-wrapper {
+    background-color: #1a1a1a;
+}
+body.dark .camera-card,
+body.dark .instructions-card {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+body.dark .nav-links a {
+    color: #ffffff;
+}
+body.dark .nav-links a:hover {
+    background: #333;
+    color: #ffffff;
+}
+body.dark .logout a:hover {
+    background: #e7000b;
+}
+body.dark .top-nav-icons a:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.app-container { 
+    display: flex; 
+    min-height: 100vh; }
+
+
+/* Sidebar */
+.sidebar{
+    width: 240px;
+    min-height: 100vh;
+    background: #ffffff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+}
+
+.logo-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 16px 8px;
+}
+
+.logo-img {
+    width: 190px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.logo-area > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.logo-area i {
+    color: #28a745;
+    font-size: 22px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.logo-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6c757d;
+    margin: 2px 0 0 0;
+}
+
+.nav-links{
+    list-style: none;
+    padding: 6px 12px 16px;
+    flex: 1;
+}
+
+.nav-links li{
+    margin: 4px 0;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.nav-links a:hover{
+    background: #f8f9fa;
+    color: #2c3e50;
+}
+
+.nav-links a.active {
+    background: #28a745;
+    color: #ffffff;
+}
+
+.nav-links a i,
+.nav-links a ion-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Logout */
+
+.logout{
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.sidebar-footer {
+    height: 4px;
+    background: #28a745;
+    margin-top: auto;
+}
+
+/* Main Content */
+/* Top navigation bar */
+.main-content { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    background-color: #f8f9fa;
+    margin-left: 240px;
+}
+.top-nav { 
+    height: 60px; 
+    background: white; 
+    border-bottom: 1px solid #60a5fa; 
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 1rem; 
+}
+.top-nav-icons {
+    display:flex;
+    gap: 1rem;
+    align-items: center;
+    
+}
+.top-nav-icons a { 
+    color: #000; 
+    font-size: 1.2rem; 
+    position: relative;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    
+}
+.top-nav-icons i { 
+    font-size: 20px; 
+    cursor: pointer;
+    padding: 8px;
+    font-weight: 700;
+    
+}
+.top-nav-icons a:hover { 
+    color: #fff; 
+    background-color: #4caf50;
+    opacity: 1;
+    border-width: 30px;
+    border-radius: 5px;
+}
+.top-nav-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+/* Content Area */
+.content-wrapper { 
+    max-width: 800px; 
+    margin: 2rem auto; 
+    text-align: center;
+    width: 100%; }
+
+h1 { 
+    font-size: 1.8rem; 
+    margin-bottom: 0.5rem; }
+.subtitle { 
+    color: #6b7280; 
+    margin-bottom: 2rem; }
+
+/* Camera Section */
+.camera-card {
+    width: 520px;
+    max-width: 100%;
+    min-height: 400px;
+    margin: 0 auto 2rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #60a5fa;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.card-label { text-align: left; color: #000; font-weight: 600; margin-bottom: 1rem; }
+.card-label i { margin-right: 0.5rem; color: #000; }
+.camera-viewport { 
+    background: #111827; 
+    aspect-ratio: 16/9; 
+    min-height: 250px;
+    border-radius: 8px; 
+    position: relative; 
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#webcam { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 1; 
+}
+
+.face-guide { 
+    position: relative; 
+    z-index: 2; 
+    width: min(42%, 200px);
+    max-height: calc(100% - 1.5rem);
+    aspect-ratio: 3 / 4;
+    border: 2px solid rgba(74, 222, 128, 0.95); 
+    border-radius: 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+    background: linear-gradient(180deg, rgba(74, 222, 128, 0.08), rgba(15, 23, 42, 0.08));
+    box-shadow:
+        0 0 0 999px rgba(3, 10, 24, 0.28),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 0 24px rgba(34, 197, 94, 0.22);
+}
+
+.face-guide::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed rgba(220, 252, 231, 0.35);
+    border-radius: 22px;
+    height: auto;
+    left: 12px;
+    right: 12px;
+    pointer-events: none;
+}
+
+.guide-box {
+    min-width: 72%;
+    color: white;
+    text-align: center;
+    padding: 0.65rem 0.9rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#status {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.scan-btn { 
+    min-width: 220px;
+    margin-top: 1.5rem; 
+    background: #22C55E; 
+    color: white; 
+    border: none; 
+    padding: 0.8rem 2.5rem; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+.scan-btn i { 
+    margin-right: 0.5rem; 
+    font-size: 1.2rem; 
+}
+
+.instructions-trigger {
+    display: block;
+    width: 220px;
+    margin: 0 auto;
+    padding: 0.8rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    background: #22C55E;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.instructions-trigger:hover {
+    background: #16a34a;
+}
+
+.instructions-modal .modal-content {
+    border: 1px solid #dbe2ea;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+}
+
+.instructions-modal .modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 1.25rem;
+}
+
+.instructions-modal .modal-title {
+    color: #111827;
+    font-weight: 700;
+}
+
+.instructions-modal .modal-body {
+    padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.instructions-modal .modal-body ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+/* Instructions Section */
+.instructions-card { text-align: left; background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+.instructions-card h3 { margin-bottom: 1rem; }
+.instructions-card ul { list-style-position: inside; color: #4b5563; line-height: 1.6; }
+
+/* Dark mode readability refinements */
+body.dark h1,
+body.dark .subtitle,
+body.dark .card-label,
+body.dark .card-label i,
+body.dark .instructions-card h3 {
+    color: #f5f5f5;
+}
+
+body.dark .instructions-card ul {
+    color: #cbd5e1;
+}
+
+body.dark .camera-card,
+body.dark .instructions-card {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .camera-viewport {
+    border: 1px solid #3a4455;
+}
+
+/* Dashboard-aligned dark palette */
+body.dark {
+    background-color: #151b24;
+    color: #f3f6fa;
+}
+
+body.dark .sidebar {
+    background: #0d1218;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .main-content,
+body.dark .content-wrapper {
+    background-color: #151b24;
+}
+
+body.dark .top-nav {
+    background: #1d2633;
+    border-bottom-color: #303a49;
+}
+
+body.dark .top-nav-text,
+body.dark h1,
+body.dark .subtitle,
+body.dark .card-label,
+body.dark .card-label i,
+body.dark .instructions-card h3 {
+    color: #f3f6fa;
+}
+
+body.dark .top-nav-icons a,
+body.dark .nav-links a {
+    color: #c4ceda;
+}
+
+body.dark .top-nav-icons a:hover,
+body.dark .nav-links a:hover {
+    color: #f3f6fa;
+}
+
+body.dark .nav-links a:hover {
+    background: #2a313a;
+}
+
+body.dark .camera-card,
+body.dark .instructions-card {
+    background-color: #1e2733;
+    border-color: #313d4c;
+}
+
+body.dark .instructions-card ul {
+    color: #a8b4c2;
+}
+
+body.dark .camera-viewport {
+    border: 1px solid #313d4c;
+}
+
+body.dark .face-guide {
+    background: linear-gradient(180deg, rgba(74, 222, 128, 0.12), rgba(15, 23, 42, 0.14));
+    box-shadow:
+        0 0 0 999px rgba(2, 6, 23, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 0 28px rgba(34, 197, 94, 0.2);
+}
+
+body.dark .guide-box {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+body.dark .instructions-trigger {
+    background: #22C55E;
+    color: white;
+}
+
+body.dark .instructions-trigger:hover {
+    background: #16a34a;
+}
+
+body.dark .instructions-modal .modal-content {
+    background: #1e2733;
+    border-color: #313d4c;
+    color: #f3f6fa;
+}
+
+body.dark .instructions-modal .modal-header {
+    border-bottom-color: #313d4c;
+}
+
+body.dark .instructions-modal .modal-title,
+body.dark .instructions-modal .modal-body ul {
+    color: #d8e2ee;
+}
+
+body.dark .instructions-modal .btn-close {
+    filter: invert(1) grayscale(1);
+}

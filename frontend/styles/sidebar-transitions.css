@@ -1,0 +1,79 @@
+/* Shared sidebar navigation transitions for sidebar-based pages */
+body.sidebar-transitions .sidebar {
+  animation: sidebarSlideIn 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+body.sidebar-transitions .sidebar-transition-content {
+  animation: contentSlideIn 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+body.sidebar-transitions .nav-links a {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+body.sidebar-transitions .nav-links a:hover {
+  transform: translateX(4px);
+}
+
+body.sidebar-transitions .nav-links a.nav-link--leaving {
+  transform: translateX(10px);
+  opacity: 0.85;
+}
+
+body.sidebar-transitions .sidebar.nav-transition-out {
+  transform: translateX(-18px);
+  opacity: 0.92;
+  transition:
+    transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 220ms ease;
+}
+
+body.sidebar-transitions .sidebar-transition-content.page-transition-out {
+  transform: translateX(16px);
+  opacity: 0.75;
+  transition:
+    transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 220ms ease;
+}
+
+@keyframes sidebarSlideIn {
+  from {
+    transform: translateX(-28px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes contentSlideIn {
+  from {
+    transform: translateX(14px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.sidebar-transitions .sidebar,
+  body.sidebar-transitions .sidebar-transition-content {
+    animation: none;
+  }
+
+  body.sidebar-transitions .sidebar.nav-transition-out,
+  body.sidebar-transitions .sidebar-transition-content.page-transition-out,
+  body.sidebar-transitions .nav-links a {
+    transition: none;
+  }
+}

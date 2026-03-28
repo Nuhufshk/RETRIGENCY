@@ -1,0 +1,158 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: #000;
+}
+body{
+    background-image: url(../images/hospital_pic.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-container {
+    position: relative;
+    width: 380px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #60a5fa;
+    border-radius: 8px;
+    background-color: #fff;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.25);
+}
+.login-container::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    border-radius: 4px;
+    background: #22c55e;
+    transform: translateX(-50%);
+}
+.id {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+
+}
+.password {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+}
+.input2 {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #969696;
+    border-radius: 8px;
+    background-color: #e8e9eb;
+    opacity: 0.7;
+}
+.submit-button {
+    width: 95%;
+    padding: 10px;
+    background-color: rgb(105, 209, 105);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.head {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+.input1 {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #969696;
+    border-radius: 8px;
+    background-color: #e8e9eb;
+    opacity: 0.7;
+    
+}
+.forgot-pw {
+    display: block;
+    text-align: right;
+    color: #007BFF;
+    text-decoration: underline;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+/* Dark mode for login page */
+body.dark {
+    background: #121212;
+    color: #ffffff;
+}
+body.dark .login-container {
+    background-color: #1e1e1e;
+    border-color: #444;
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.8);
+}
+body.dark .head {
+    color: #f5f5f5;
+}
+body.dark .id,
+body.dark .password {
+    color: #e0e0e0;
+}
+body.dark .input1,
+body.dark .input2 {
+    background-color: #333;
+    border-color: #555;
+    color: #f5f5f5;
+}
+body.dark .forgot-pw {
+    color: #60a5fa;
+}
+
+/* Dashboard-aligned dark palette */
+body.dark {
+    background: #151b24;
+    color: #f3f6fa;
+}
+body.dark .login-container {
+    background-color: #1e2733;
+    border-color: #313d4c;
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.5);
+}
+body.dark .head {
+    color: #f3f6fa;
+}
+body.dark .id,
+body.dark .password {
+    color: #c4ceda;
+}
+body.dark .input1,
+body.dark .input2 {
+    background-color: #1e2733;
+    border-color: #313d4c;
+    color: #f3f6fa;
+}
+body.dark .input1::placeholder,
+body.dark .input2::placeholder {
+    color: #7d8ca0;
+}
+body.dark .forgot-pw {
+    color: #c4ceda;
+}

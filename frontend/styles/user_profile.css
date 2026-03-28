@@ -1,0 +1,355 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: "Poppins", sans-serif; 
+}
+body { 
+    background-color: #f9fafb; 
+    color: #1f2937; 
+}
+/* Global dark mode for app pages that use sidebar layout */
+body.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+body.dark .sidebar {
+    background: #0d1218;
+    color: #ffffff;
+}
+body.dark .main-content {
+    background-color: #1a1a1a;
+}
+body.dark .top-nav {
+    background: #2a2a2a;
+    border-bottom: 1px solid #444;
+}
+body.dark .top-nav-text {
+    color: #f5f5f5;
+}
+body.dark .top-nav-icons a {
+    color: #e5e7eb;
+}
+body.dark .top-nav-icons i {
+    color: #e5e7eb;
+}
+body.dark .content-wrapper {
+    background-color: #1a1a1a;
+}
+body.dark .camera-card,
+body.dark .instructions-card {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+body.dark .nav-links a {
+    color: #ffffff;
+}
+body.dark .nav-links a:hover {
+    background: #333;
+    color: #ffffff;
+}
+body.dark .logout a:hover {
+    background: #e7000b;
+}
+body.dark .top-nav-icons a:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+body.dark .text-data {
+    color: #f5f5f5;
+}
+body.dark .heading{
+    color: #f5f5f5;
+}
+
+.app-container { 
+    display: flex; 
+    min-height: 100vh; }
+
+
+/* Sidebar */
+.sidebar{
+width:240px;
+height:100vh;
+background:#fff;
+color: #000;
+position: fixed;
+padding-top:10px;
+transition:0.3s;
+border: 1px solid rgba(0,0,0,0.1);
+box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.logo-img {
+width: 190px;
+max-width: 100%;
+height: auto;
+display: block;
+}
+
+.logo-area{
+display:flex;
+align-items:center;
+justify-content: center;
+padding: 14px 16px 8px;
+}
+
+.nav-links{
+list-style:none;
+margin-top:6px;
+margin-left: 2px;
+}
+
+.nav-links li{
+margin:0px 0;
+}
+
+.nav-links a{
+text-decoration:none;
+color:black;
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 10px;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+background:#4CAF50;
+border-radius: 5px;
+width: 99%;
+color: white;
+}
+
+/* Logout */
+
+.logout{
+position:absolute;
+bottom:20px;
+width: 85%;
+margin: 10px;
+border-bottom: 3px solid #4CAF50;
+}
+.sidebar-logout a:hover {
+background: #e7000b;
+overflow: hidden;
+color: white;
+}
+
+/* Main Content */
+/* Top navigation bar */
+.main-content { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column; 
+    background-color: #f0f0f0;
+    margin-left: 240px;
+}
+.top-nav { 
+    height: 60px; 
+    background: white; 
+    border-bottom: 1px solid #60a5fa; 
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 1rem; 
+}
+.top-nav-icons {
+    display:flex;
+    gap: 1rem;
+    align-items: center;
+    
+}
+.top-nav-icons a { 
+    color: #000; 
+    font-size: 1.2rem; 
+    position: relative;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    
+}
+.top-nav-icons i { 
+    font-size: 20px; 
+    cursor: pointer;
+    padding: 8px;
+    font-weight: 700;
+    
+}
+.top-nav-icons a:hover { 
+    color: #fff; 
+    background-color: #4caf50;
+    opacity: 1;
+    border-width: 30px;
+    border-radius: 5px;
+}
+.top-nav-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px; 
+    margin: 2rem auto; 
+    text-align: center;
+    width: 100%; 
+    padding: 10px;
+}
+.profile-card .heading {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    background-color: white;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #60a5fa;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+.image .profile-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+.profile-card .text-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    margin: 30px;
+    gap: 30px;
+}
+.text-data .name {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+.text-data .email {
+    font-size: 20px;
+    font-weight: 600;
+}
+.text-data .id {
+    font-size: 20px;
+    font-weight: 600;
+}
+.text-data .dept {
+    font-size: 20px;
+    font-weight: 600;
+}
+.text-data .name-text {
+    font-size: 18px;
+    font-weight: 100;
+}
+.text-data .email-text {
+    font-size: 18px;
+    font-weight: 100;
+}
+.text-data .id-text {
+    font-size: 18px;
+    font-weight: 100;
+}
+.text-data .dept-text {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+/* Dark mode readability refinements */
+body.dark .main-content,
+body.dark .content-wrapper {
+    background-color: #151b24;
+}
+
+body.dark .profile-card {
+    background-color: #1f2733;
+    border: 1px solid #313d4c;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .profile-card .heading,
+body.dark .profile-card .text-data span {
+    color: #f3f6fa;
+}
+
+body.dark .text-data .name-text,
+body.dark .text-data .email-text,
+body.dark .text-data .id-text,
+body.dark .text-data .dept-text {
+    color: #c4ceda;
+    font-weight: 400;
+}
+
+/* Dashboard-aligned dark palette */
+body.dark {
+    background-color: #151b24;
+    color: #f3f6fa;
+}
+
+body.dark .sidebar {
+    background: #0d1218;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .main-content,
+body.dark .content-wrapper {
+    background-color: #151b24;
+}
+
+body.dark .top-nav {
+    background: #1d2633;
+    border-bottom-color: #303a49;
+}
+
+body.dark .top-nav-text,
+body.dark .profile-card .heading,
+body.dark .profile-card .text-data span,
+body.dark .text-data,
+body.dark .heading {
+    color: #f3f6fa;
+}
+
+body.dark .top-nav-icons a,
+body.dark .nav-links a {
+    color: #c4ceda;
+}
+
+body.dark .top-nav-icons a:hover,
+body.dark .nav-links a:hover {
+    color: #f3f6fa;
+}
+
+body.dark .nav-links a:hover {
+    background: #2a313a;
+}
+
+body.dark .profile-card {
+    background-color: #1e2733;
+    border: 1px solid #313d4c;
+}
+
+body.dark .text-data .name-text,
+body.dark .text-data .email-text,
+body.dark .text-data .id-text,
+body.dark .text-data .dept-text {
+    color: #a8b4c2;
+}
