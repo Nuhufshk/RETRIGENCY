@@ -1,5 +1,5 @@
 const MeditrackConfig = {
-  API_BASE_URL: "http://localhost:3002/api",
+  API_BASE_URL: "https://retrigency.onrender.com/api",
   DEFAULTS: {
     FONT_SIZE: "medium",
     THEME: "light",
