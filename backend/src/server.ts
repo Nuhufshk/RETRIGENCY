@@ -29,12 +29,30 @@ app.use(compression({ threshold: 1024 }));
 };
 
 // CORS configuration
+const allowedOrigins = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:3000",
+    process.env.FRONTEND_URL,
+    "https://retrigencyapp.onrender.com"
+].filter(Boolean) as string[];
+
 app.use(
     cors({
-        origin: ["http://localhost:5500", process.env.FRONTEND_URL!, "http://127.0.0.1:5500"],
+        origin: (origin, callback) => {
+            // Allow requests with no origin (like mobile apps or curl)
+            if (!origin) return callback(null, true);
+
+            if (allowedOrigins.includes(origin) || allowedOrigins.some(ao => origin.startsWith(ao))) {
+                callback(null, true);
+            } else {
+                console.warn(`CORS blocked request from origin: ${origin}`);
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-        allowedHeaders: ["Content-Type", "Authorization"],
+        allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
     })
 );
 

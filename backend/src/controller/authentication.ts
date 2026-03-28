@@ -58,7 +58,7 @@ class AuthenticationController {
         const cookieOptions = {
             httpOnly: true,
             secure: isProduction,
-            sameSite: isProduction ? ("strict" as const) : ("lax" as const),
+            sameSite: isProduction ? ("none" as const) : ("lax" as const),
             maxAge: 24 * 60 * 60 * 1000,
         };
         console.log("Cookie options:", cookieOptions);

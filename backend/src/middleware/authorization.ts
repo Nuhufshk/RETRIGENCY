@@ -11,8 +11,10 @@ export const authorization = (
     next: NextFunction
 ) => {
     try {
-        console.log("Authorization check. Cookies received:", req.cookies);
-        console.log("Origin:", req.headers.origin);
+        const origin = req.headers.origin;
+        const cookies = req.cookies;
+        console.log(`[Auth Check] Origin: ${origin}, Cookies received: ${Object.keys(cookies || {})}`);
+        
         const authHeader = req.cookies.token;
 
         if (!authHeader)
