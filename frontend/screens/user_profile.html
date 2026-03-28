@@ -69,7 +69,7 @@
                 </div>
                 <div class="sidebar-logout">
                     <li class="logout">
-                        <a href="login_page.html">
+                        <a href="../index.html">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Logout</span>
                         </a>
@@ -147,8 +147,15 @@
                             <input type="text" class="form-control" id="lastName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="departmentId" class="form-label">Department ID</label>
-                            <input type="number" class="form-control" id="departmentId">
+                            <label for="staffId" class="form-label">Staff ID</label>
+                            <input type="number" class="form-control" id="staffId" required>
+                            <div class="form-text">Required for initial profile setup.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="departmentId" class="form-label">Department</label>
+                            <select class="form-select" id="departmentId">
+                                <option value="">Select Department</option>
+                            </select>
                         </div>
                     </form>
                 </div>

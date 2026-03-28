@@ -6,6 +6,7 @@ import profileRouter from "./routes/profile.route.js";
 import patientRouter from "./routes/patient.route.js";
 import dashboardRouter from "./routes/dashboard.route.js";
 import notificationRouter from "./routes/notification.route.js";
+import departmentRouter from "./routes/department.route.js";
 import { ServiceError } from "./utils/index.js";
 import compression from "compression";
 import cors from "cors";
@@ -69,6 +70,7 @@ app.use("/api/profiles", profileRouter);
 app.use("/api/patients", patientRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/notifications", notificationRouter);
+app.use("/api/departments", departmentRouter);
 
 // Health check endpoint
 app.get("/health", (req: Request, res: Response) => {

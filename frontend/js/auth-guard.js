@@ -13,7 +13,7 @@
     "user_profile.html",
   ];
 
-  const PUBLIC_PAGES = ["login_page.html", "retrieve_password.html", "index.html"];
+  const PUBLIC_PAGES = ["retrieve_password.html", "index.html"];
 
   async function checkAuth() {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";

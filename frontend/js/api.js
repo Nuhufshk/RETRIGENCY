@@ -195,5 +195,13 @@ const MediTrackAPI = (() => {
         });
       },
     },
+    departments: {
+      getAll: async () => {
+        return request({
+          url: "/departments",
+          method: "GET",
+        });
+      },
+    },
   };
 })();

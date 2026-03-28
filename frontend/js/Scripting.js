@@ -122,8 +122,7 @@ function initSidebarPageTransitions() {
       if (samePath && sameSearch && sameHash) return;
 
       const isLogoutLink =
-        link.closest(".logout") !== null ||
-        /\/?login_page\.html$/i.test(nextUrl.pathname);
+        link.closest(".logout") !== null;
       if (isLogoutLink) {
         event.preventDefault();
         const shouldLogout = window.confirm(
@@ -140,6 +139,14 @@ function initSidebarPageTransitions() {
         // Keep UI preferences, clear only auth/session data.
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+
+        // Force redirect to root index.html
+        const loginPath = window.location.pathname.includes('/screens/') 
+          ? "../index.html" 
+          : "index.html";
+          
+        window.location.href = loginPath;
+        return; // Don't proceed to the standard navigation logic
       }
 
       event.preventDefault();
@@ -200,109 +207,6 @@ if (smsToggle) {
     const enabled = smsToggle.classList.contains("active");
     localStorage.setItem("smsNotifications", enabled);
     syncSettings({ smsNotification: enabled });
-  });
-}
-
-// Populate user profile page
-async function loadUserProfile() {
-  const fullNameEl = document.getElementById("user-full-name");
-  const emailEl = document.getElementById("user-email");
-  const staffIdEl = document.getElementById("user-staff-id");
-  const departmentEl = document.getElementById("user-department");
-
-  // Also handle screens/user_profile.html spans
-  const nameText = document.querySelector(".name-text");
-  const emailText = document.querySelector(".email-text");
-  const idText = document.querySelector(".id-text");
-  const deptText = document.querySelector(".dept-text");
-
-  if (!window.currentUser) return;
-
-  try {
-    const response = await MediTrackAPI.profiles.getByUserId(
-      window.currentUser.id
-    );
-    if (response.status && response.data) {
-      const p = response.data;
-      const fullName = [p.firstName, p.middleName, p.lastName]
-        .filter(Boolean)
-        .join(" ");
-
-      if (fullNameEl) fullNameEl.textContent = fullName;
-      if (emailEl) emailEl.textContent = window.currentUser.email;
-      if (staffIdEl) staffIdEl.textContent = p.staffId;
-      if (departmentEl)
-        departmentEl.textContent = p.department?.name || "General Medicine";
-
-      if (nameText) nameText.textContent = fullName;
-      if (emailText) emailText.textContent = window.currentUser.email;
-      if (idText) idText.textContent = p.staffId;
-      if (deptText)
-        deptText.textContent = p.department?.name || "General Medicine";
-
-      // Populate settings form inputs if they exist
-      const inputFullName = document.getElementById("profileFullName");
-      const inputEmail = document.getElementById("profileEmail");
-      const inputStaffId = document.getElementById("profileStaffId");
-      const inputDept = document.getElementById("profileDepartment");
-
-      if (inputFullName) inputFullName.value = fullName;
-      if (inputEmail) inputEmail.value = window.currentUser.email;
-      if (inputStaffId) inputStaffId.value = p.staffId;
-      if (inputDept) inputDept.value = p.department?.name || "General Medicine";
-
-      // Sync UI with backend settings if available
-      if (p.theme === "dark" && !body.classList.contains("dark")) {
-        body.classList.add("dark");
-        if (toggle) toggle.classList.add("active");
-        updateThemeLogo(true);
-      }
-    }
-  } catch (e) {
-    console.error("Error loading profile:", e);
-  }
-}
-
-// Save profile updates
-const btnSaveProfile = document.getElementById("btnSaveProfile");
-if (btnSaveProfile) {
-  btnSaveProfile.addEventListener("click", async () => {
-    const fullName = document.getElementById("profileFullName").value.trim();
-    const staffId = document.getElementById("profileStaffId").value.trim();
-
-    if (!fullName || !staffId) {
-      alert("Full Name and Staff ID are required");
-      return;
-    }
-
-    const nameParts = fullName.split(" ");
-    const firstName = nameParts[0];
-    const lastName =
-      nameParts.length > 1 ? nameParts[nameParts.length - 1] : "";
-    const middleName =
-      nameParts.length > 2 ? nameParts.slice(1, -1).join(" ") : "";
-
-    const originalText = btnSaveProfile.textContent;
-    btnSaveProfile.textContent = "Saving...";
-    btnSaveProfile.disabled = true;
-
-    try {
-      await MediTrackAPI.profiles.upsert(window.currentUser.id, {
-        staffId: Number(staffId),
-        firstName,
-        middleName,
-        lastName,
-        // departmentId could be handled here if we had a select/mapping
-      });
-      alert("Profile updated successfully");
-      loadUserProfile();
-    } catch (e) {
-      console.error("Failed to save profile:", e);
-      alert("Error saving profile: " + e.message);
-    } finally {
-      btnSaveProfile.textContent = originalText;
-      btnSaveProfile.disabled = false;
-    }
   });
 }
 
