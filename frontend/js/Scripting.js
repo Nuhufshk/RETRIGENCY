@@ -373,6 +373,9 @@ if (loginForm) {
       const data = await MediTrackAPI.auth.login(staffId, password);
 
       // Successful login
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
       }

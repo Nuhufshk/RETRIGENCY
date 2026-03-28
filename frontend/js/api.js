@@ -10,6 +10,18 @@ const MediTrackAPI = (() => {
     },
   });
 
+  // Add a request interceptor to include the token in headers (fallback for cookies)
+  api.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
+
   /**
    * Generic request wrapper for consistent error handling.
    */

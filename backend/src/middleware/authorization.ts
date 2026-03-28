@@ -15,14 +15,18 @@ export const authorization = (
         const cookies = req.cookies;
         console.log(`[Auth Check] Origin: ${origin}, Cookies received: ${Object.keys(cookies || {})}`);
         
-        const authHeader = req.cookies.token;
+        // Try getting token from cookies or Authorization header
+        let token = req.cookies.token;
+        
+        if (!token && req.headers.authorization?.startsWith("Bearer ")) {
+            token = req.headers.authorization.split(" ")[1];
+            console.log("[Auth Check] Using token from Authorization header");
+        }
 
-        if (!authHeader)
+        if (!token)
             return res
                 .status(401)
                 .json({ message: "Unauthorized: No token provided", status: false });
-
-        const token = authHeader;
 
         const decodedToken = jwtConfig.verifyToken(token, "access") as IPayload;
 

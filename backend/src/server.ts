@@ -14,6 +14,9 @@ import "dotenv/config";
 const app: Express = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust Proxy for Render.com (necessary for secure cookies)
+app.set("trust proxy", 1);
+
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} - Origin: ${req.headers.origin}`);
     next();
@@ -33,7 +36,7 @@ const allowedOrigins = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
     "http://localhost:3000",
-    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL!,
     "https://retrigencyapp.onrender.com"
 ].filter(Boolean) as string[];
 

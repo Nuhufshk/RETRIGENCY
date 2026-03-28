@@ -20,7 +20,8 @@ class AuthenticationController {
         res.json({
             status: true,
             message: "Login successful",
-            user: profile
+            user: profile,
+            token: token.accessToken // Fallback for browsers blocking cross-site cookies
         });
     });
 
