@@ -62,8 +62,9 @@ const toggle = document.querySelector(".toggle");
 const emailToggle = document.querySelector(".email-toggle");
 const pushToggle = document.querySelector(".push-toggle");
 const smsToggle = document.querySelector(".sms-toggle");
-const DARK_MODE_LOGO = "../images/retrigency-logo-dark.png";
-const DEFAULT_LIGHT_LOGO = "../images/retrigency-logo.png";
+const isInsideScreens = window.location.pathname.includes("/screens/");
+const DARK_MODE_LOGO = isInsideScreens ? "../images/retrigency-logo-dark.png" : "images/retrigency-logo-dark.png";
+const DEFAULT_LIGHT_LOGO = isInsideScreens ? "../images/retrigency-logo.png" : "images/retrigency-logo.png";
 let isSidebarNavigating = false;
 
 function updateThemeLogo(isDarkMode) {

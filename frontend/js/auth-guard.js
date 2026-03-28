@@ -28,12 +28,12 @@
         // User is authenticated
         window.currentUser = response.user;
         
-        // If on login page, redirect to dashboard
-        if (currentPage === "login_page.html" || currentPage === "index.html") {
-          window.location.href = "screens/dashboard.html";
-        } else if (currentPage === "") {
-             // Handle root
-             window.location.href = "frontend/screens/dashboard.html";
+        // If on login/index page, redirect to dashboard
+        if (currentPage === "login_page.html" || currentPage === "index.html" || currentPage === "") {
+          const dashboardPath = window.location.pathname.includes('/screens/') 
+            ? "dashboard.html" 
+            : "screens/dashboard.html";
+          window.location.href = dashboardPath;
         }
       } else {
         throw new Error("Not authenticated");
@@ -43,12 +43,12 @@
       if (PROTECTED_PAGES.includes(currentPage)) {
         console.warn("Access denied. Redirecting to login...");
         
-        // Adjust path based on current location
-        const redirectPath = currentPage.includes('.html') && !PUBLIC_PAGES.includes(currentPage) 
+        // Path to index.html from where we are
+        const loginPath = window.location.pathname.includes('/screens/') 
           ? "../index.html" 
           : "index.html";
           
-        window.location.href = redirectPath;
+        window.location.href = loginPath;
       }
     }
   }

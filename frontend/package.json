@@ -1,0 +1,12 @@
+{
+  "name": "retrigency-frontend",
+  "version": "1.0.0",
+  "description": "Retrigency Frontend",
+  "scripts": {
+    "start": "npx -y serve .",
+    "dev": "npx -y serve ."
+  },
+  "dependencies": {
+    "axios": "^1.6.7"
+  }
+}
