@@ -24,7 +24,9 @@
   </head>
 
   <body class="patients-data-page">
-    <div class="sidebar">
+    
+    <div class="sidebar-overlay"></div>
+<div class="sidebar">
       <div class="logo-area">
         <img
           src="../images/retrigency-logo.png"
@@ -71,6 +73,9 @@
 
     <div class="main-wrapper">
       <div class="page-header">
+            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        
+        
         <h1>Patients</h1>
         <div class="right-side">
           <a href="notifications.html" class="notification-link">
@@ -108,7 +113,8 @@
         </div>
 
         <div class="table-card">
-          <table class="patients-table">
+          <div class="table-responsive">
+            <table class="patients-table">
             <thead>
               <tr>
                 <th>Patient ID</th>
@@ -125,6 +131,7 @@
               <!-- Rows populated by add-patient.js -->
             </tbody>
           </table>
+          </div>
         </div>
 
         <p class="patients-footer">Showing 5 of 5 patients</p>
@@ -144,5 +151,7 @@
     <script src="../js/notification-badge.js"></script>
     <script src="../js/retrigency-data.js"></script>
     <script src="../js/add-patient.js"></script>
-  </body>
+  
+    <script src="../js/mobile-menu.js"></script>
+</body>
 </html>

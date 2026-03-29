@@ -44,7 +44,8 @@
   <body>
     <div class="app-container">
       <!-- Sidebar -->
-      <nav class="sidebar">
+      <div class="sidebar-overlay"></div>
+        <nav class="sidebar">
         <div class="logo-area">
           <img
             src="../images/retrigency-logo.png"
@@ -95,6 +96,7 @@
 
       <main class="main-content">
         <header class="top-nav">
+            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
           <div class="top-nav-text">
             <span>Face ID</span>
           </div>
@@ -183,5 +185,7 @@
     <script src="../js/Scripting.js"></script>
     <script src="../js/nav-user-sync.js"></script>
     <script src="../js/notification-badge.js"></script>
+
+    <script src="../js/mobile-menu.js"></script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrigency - Reports</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/reports.css">
+    <link rel="stylesheet" href="../styles/sidebar-transitions.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="../images/retrigency-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth-guard.js"></script>
+</head>
+<body class="sidebar-transitions">
+    <div class="sidebar-overlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-area">
+            <img src="../images/retrigency-logo.png" alt="Retrigency logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="patients_data.html">
+                    <i class="fa-solid fa-user-injured"></i>
+                    <span>Patients</span>
+                </a>
+            </li>
+            <li>
+                <a href="Face_id.html">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Face ID</span>
+                </a>
+            </li>
+            <li>
+                <a href="help.html">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Help</span>
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="../index.html">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="page-header">
+            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+            <h1>Reports & Analytics</h1>
+            <div class="right-side">
+                <a href="notifications.html" class="notification-link">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </a>
+                <a href="user_profile.html" class="user">
+                    <i class="fa-regular fa-user"></i>
+                    <p id="nav-username">Staff</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="reports-grid">
+                <!-- Gender Distribution Chart -->
+                <div class="report-card">
+                    <h3>Patient Gender Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn-export btn-csv" onclick="exportData('gender', 'csv')">
+                            <i class="fa-solid fa-file-csv"></i> CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admission Trend Chart -->
+                <div class="report-card">
+                    <h3>7-Day Admission Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="admissionChart"></canvas>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn-export btn-csv" onclick="exportData('admissions', 'csv')">
+                            <i class="fa-solid fa-file-csv"></i> CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Full Patient Export -->
+                <div class="report-card">
+                    <h3>Comprehensive Patient Export</h3>
+                    <p>Export all registered patient records including medical details and contact information.</p>
+                    <div class="export-actions">
+                        <button class="btn-export btn-csv" onclick="exportAllPatients('csv')">
+                            <i class="fa-solid fa-file-csv"></i> Download CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- App Scripts -->
+    <script src="../js/nav-user-sync.js"></script>
+    <script src="../js/notification-badge.js"></script>
+    <script src="../js/retrigency-data.js"></script>
+    <script src="../js/mobile-menu.js"></script>
+    <script src="../js/export-utils.js"></script>
+    <script src="../js/reports.js"></script>
+</body>
+</html>

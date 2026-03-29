@@ -1572,3 +1572,219 @@ body.dark .btn-cancel:hover,
 body.dark .confirm-modal-actions .btn-cancel:hover {
   background: #2a3340;
 }
+
+/* ========================================= */
+/* MOBILE RESPONSIVENESS & SIDEBAR TOGGLE    */
+/* ========================================= */
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #2c3e50;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-right: 12px;
+  transition: color 0.2s;
+}
+
+body.dark .mobile-menu-toggle {
+  color: #f1f5f9;
+}
+
+.mobile-menu-toggle:hover {
+  color: #28a745;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 16, 25, 0.46);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* TABLET (up to 992px) */
+@media (max-width: 992px) {
+  .dashboard, .page-header, .topbar {
+    padding: 16px 24px;
+  }
+  
+  .main-content {
+    padding: 24px;
+  }
+
+  .stats-section {
+    gap: 16px;
+  }
+
+  .stats-card {
+    flex: 1 1 calc(50% - 16px);
+    max-width: none;
+  }
+
+  .quick-links {
+    gap: 16px;
+  }
+  
+  .card-btn {
+    flex: 1 1 calc(50% - 16px);
+    max-width: none;
+  }
+
+  /* Shrink modal on tablet */
+  .add-patient-modal-content {
+    max-width: 90%;
+  }
+}
+
+/* MOBILE (up to 768px) */
+@media (max-width: 768px) {
+  /* Un-fix the sidebar wrapper so it stops squeezing main content */
+  .main-wrapper, .main-content {
+    margin-left: 0 !important;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Make header flex dynamic to fit the toggle and the right side */
+  .dashboard, .page-header, .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+  }
+
+  .page-header h1, .dashboard > p, .top-nav-text span {
+    font-size: 18px;
+  }
+
+  /* Hide sidebar off screen securely */
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 999;
+    box-shadow: 4px 0 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  /* Force stat cards 1 per row */
+  .stats-card {
+    flex: 1 1 100%;
+  }
+
+  /* Force quicklinks 1 per row */
+  .card-btn {
+    flex: 1 1 100%;
+  }
+
+  .card {
+    min-height: auto;
+    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .card-icon-patient, 
+  .card-icon-face-id, 
+  .card-icon-view-all, 
+  .card-icon-report {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  /* Patient Page specifics */
+  .patients-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+  
+  .search-type-select {
+    width: 100%;
+  }
+  
+  button.add-patient-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modal forms adjusting */
+  .add-patient-form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .add-patient-form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .add-patient-modal-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .add-patient-modal-actions .btn-cancel,
+  .add-patient-modal-actions .btn-save {
+    width: 100%;
+  }
+}
+
+/* SMALL PHONES (up to 480px) */
+@media (max-width: 480px) {
+  .logo-img {
+    width: 160px;
+  }
+  
+  .dashboard, .page-header, .top-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .right-side a .notification-dot {
+    top: 0px;
+    right: 0px;
+  }
+  
+  .user p {
+    display: none;
+  }
+}

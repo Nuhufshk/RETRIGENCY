@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retrigency - Settings</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
     <link rel="stylesheet" href="../styles/settings.css">
     <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +31,7 @@
 
     <div class="app-container">
         <!-- Sidebar -->
+        <div class="sidebar-overlay"></div>
         <nav class="sidebar">
             <div class="logo-area">
                 <img src="../images/retrigency-logo.png" alt="Retrigency logo" class="logo-img" />
@@ -77,6 +79,7 @@
 
         <main class="main-content">
             <header class="top-nav">
+            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
                 <div class="top-nav-text">
                     <span>Settings</span>
                 </div>
@@ -211,6 +214,8 @@
             <script src="../js/nav-user-sync.js"></script>
             <script src="../js/notification-badge.js"></script>
             <script src="../js/user_profile.js"></script>
+
+    <script src="../js/mobile-menu.js"></script>
 </body>
 
 </html>

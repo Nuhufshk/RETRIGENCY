@@ -29,7 +29,9 @@
   </head>
   <body>
     <!-- Sidebar -->
-    <div class="sidebar">
+    
+    <div class="sidebar-overlay"></div>
+<div class="sidebar">
       <div class="logo-area">
         <img
           src="../images/retrigency-logo.png"
@@ -85,6 +87,9 @@
     </div>
     <div class="main-wrapper">
       <div class="dashboard">
+            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        
+        
         <p>Dashboard</p>
 
         <div class="right-side">
@@ -197,13 +202,13 @@
                 </div>
               </a>
 
-              <a href="#" class="card-btn">
+              <a href="reports.html" class="card-btn">
                 <div class="card">
                   <div class="card-icon-report">
                     <i class="fa-solid fa-file-lines"></i>
                   </div>
 
-                  <h3>Generate Report</h3>
+                  <h3>Generate Reports</h3>
 
                   <p>Create system reports</p>
                 </div>
@@ -287,5 +292,7 @@
     <script src="../js/retrigency-data.js"></script>
     <script src="../js/add-patient.js"></script>
     <script src="../js/dashboard.js"></script>
-  </body>
+  
+    <script src="../js/mobile-menu.js"></script>
+</body>
 </html>
