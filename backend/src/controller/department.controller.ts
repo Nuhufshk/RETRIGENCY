@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { asyncWrapper } from "../utils/index.js";
-import { DepartmentService } from "../services/department.service.ts";
+import { DepartmentService } from "../services/department.service.js";
 
 class DepartmentController {
     private readonly departmentService: DepartmentService;

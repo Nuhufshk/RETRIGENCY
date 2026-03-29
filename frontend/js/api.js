@@ -195,6 +195,15 @@ const MediTrackAPI = (() => {
         });
       },
     },
+    users: {
+      update: async (userId, userData) => {
+        return request({
+          url: `/users/${userId}`,
+          method: "PATCH",
+          data: userData,
+        });
+      },
+    },
     departments: {
       getAll: async () => {
         return request({
