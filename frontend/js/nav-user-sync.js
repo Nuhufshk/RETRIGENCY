@@ -1,39 +1,44 @@
 /**
  * nav-user-sync.js
  * Syncs the user's first name from localStorage into the top-right "Staff" 
- * text on every page. Also loads it from the API on first visit.
+ * text on every page. Also listens for updates from auth-guard.js.
  */
 (function () {
   function applyName() {
     const name = localStorage.getItem("retrigency_user_name") || "Staff";
-    // Pattern 1: <p>Staff</p> inside .user div (dashboard, patients)
-    document.querySelectorAll(".user p").forEach((el) => {
-      if (el.textContent.trim() === "Staff" || el.dataset.navUser) {
+    
+    // Pattern 1: .user p (Standard dashboard/notifications)
+    document.querySelectorAll(".user p, #nav-username").forEach((el) => {
+      // Avoid recursive loops by checking if text matches existing name
+      if (el.textContent.trim() !== name) {
         el.textContent = name;
-        el.dataset.navUser = "true";
       }
     });
-    // Pattern 2: <a>...Staff</a> in top-nav-icons (settings, profile, face_id)
-    document.querySelectorAll(".top-nav-icons a, .top-nav-icons a").forEach((a) => {
-      if (a.href && a.href.includes("user_profile")) {
-        // Keep the icon, replace only text
+
+    // Pattern 2: top-nav-icons links (Settings, Face ID, etc.)
+    document.querySelectorAll(".top-nav-icons a, .right-side a").forEach((a) => {
+      const linkHtml = a.innerHTML;
+      // If it contains "Staff" and is likely the profile link
+      if (linkHtml.includes("Staff") || a.href.includes("user_profile")) {
+        // Keep the icon if it exists, replace only the text "Staff" or current name
         const icon = a.querySelector("i");
         if (icon) {
-          a.textContent = "";
-          a.appendChild(icon);
-          a.append(name);
+          const iconHtml = icon.outerHTML;
+          a.innerHTML = iconHtml + " " + name;
+        } else if (a.textContent.includes("Staff")) {
+           a.textContent = name;
         }
       }
     });
-    // Pattern 3: notifications page <p>Staff</p>
-    document.querySelectorAll(".right-side .user p, .notification-link + .user p").forEach((el) => {
-      el.textContent = name;
-    });
   }
 
+  // Initial apply
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", applyName);
   } else {
     applyName();
   }
+
+  // Listen for real-time updates from auth-guard.js
+  window.addEventListener("userProfileUpdated", applyName);
 })();

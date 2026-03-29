@@ -27,6 +27,13 @@
       if (response.status && response.user) {
         // User is authenticated
         window.currentUser = response.user;
+
+        // Store first name for navigation sync
+        if (response.user.firstName) {
+          localStorage.setItem("retrigency_user_name", response.user.firstName);
+          // Dispatch event so nav-user-sync.js can update immediately
+          window.dispatchEvent(new Event("userProfileUpdated"));
+        }
         
         // If on login/index page, redirect to dashboard
         if (currentPage === "login_page.html" || currentPage === "index.html" || currentPage === "") {
