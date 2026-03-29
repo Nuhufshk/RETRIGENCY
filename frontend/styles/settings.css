@@ -11,8 +11,9 @@ body {
 }
 
 .app-container {
-  display: flex;
   min-height: 100vh;
+  width: 100%;
+  background: #f8f9fa;
 }
 
 /* Sidebar (matches dashboard/patients sidebar styling) */
@@ -42,7 +43,7 @@ body {
   display: block;
 }
 
-.logo-area > div {
+.logo-area>div {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -119,11 +120,11 @@ body {
 
 /* Main layout */
 .main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   margin-left: 240px;
   min-height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
   background: #f8f9fa;
 }
 
@@ -170,7 +171,6 @@ body {
 /* Bring content in line with dashboard spacing (not centered narrow card lane) */
 .content-wrapper {
   width: 100%;
-  max-width: 1100px;
   padding: 32px;
   margin: 0;
 }
@@ -321,7 +321,7 @@ h1 {
   padding: 14px 0;
 }
 
-.notification-item + .notification-item {
+.notification-item+.notification-item {
   border-top: 1px solid #f0f0f0;
 }
 
@@ -345,8 +345,8 @@ h1 {
   gap: 16px;
 }
 
-.profile-info > .sub-profile-info,
-.profile-info > p {
+.profile-info>.sub-profile-info,
+.profile-info>p {
   grid-column: 1 / -1;
 }
 
@@ -430,117 +430,6 @@ h1 {
   color: #ffffff;
 }
 
-/* Dark mode */
-body.dark {
-  background-color: #121212;
-  color: #e5e7eb;
-}
-
-body.dark .sidebar {
-  background: #0d1218;
-}
-
-body.dark .main-content {
-  background: #1a1a1a;
-}
-
-body.dark .top-nav {
-  background: #2a2a2a;
-  border-bottom: 1px solid #444;
-}
-
-body.dark .top-nav-text {
-  color: #f5f5f5;
-}
-
-body.dark .top-nav-icons a {
-  color: #e5e7eb;
-}
-
-body.dark .top-nav-icons a:hover {
-  color: #ffffff;
-}
-
-body.dark .nav-links a {
-  color: #ffffff;
-}
-
-body.dark .nav-links a:hover {
-  background: #333;
-}
-
-body.dark .nav-links a.active {
-  background: #28a745;
-}
-
-body.dark .appearance,
-body.dark .notifications,
-body.dark .language,
-body.dark .profile-info,
-body.dark .danger-zone {
-  background: #2a2a2a;
-  border-color: #444;
-  box-shadow: none;
-}
-
-body.dark h1,
-body.dark .sub-appearance-text,
-body.dark .sub-notifications-text,
-body.dark .sub-language-text,
-body.dark .sub-profile-info-text,
-body.dark .notification-type,
-body.dark .reset-text,
-body.dark .cache,
-body.dark .text {
-  color: #f5f5f5;
-}
-
-body.dark .p-text,
-body.dark .subtitle {
-  color: #adb5bd;
-}
-
-body.dark .font-selector,
-body.dark .language-selector,
-body.dark .profile-input {
-  background: #333;
-  color: #ffffff;
-  border-color: #555;
-}
-
-body.dark .toggle {
-  background: #495057;
-}
-
-body.dark .toggle.active {
-  background: #28a745;
-}
-
-body.dark .notification-item + .notification-item {
-  border-top-color: #3a3a3a;
-}
-
-body.dark .danger-zone {
-  border-color: #8b1f2a;
-}
-
-body.dark .clear-cache {
-  border-top-color: #8b1f2a;
-}
-
-body.dark .cancel-btn {
-  background: #2f3439;
-  color: #e5e7eb;
-  border-color: #555;
-}
-
-body.dark .reset-btn,
-body.dark .clear-btn {
-  background: transparent;
-  color: #ff7b84;
-  border-color: #ff7b84;
-}
-
 @media (max-width: 900px) {
   .content-wrapper {
     padding: 24px;
@@ -569,7 +458,7 @@ body.dark .clear-btn {
   }
 }
 
-/* Dashboard-aligned dark palette */
+/* Consolidated Dark Mode (Dashboard-aligned) */
 body.dark {
   background-color: #151b24;
   color: #f3f6fa;
@@ -580,7 +469,8 @@ body.dark .sidebar {
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.45);
 }
 
-body.dark .main-content {
+body.dark .main-content,
+body.dark .app-container {
   background: #151b24;
 }
 
@@ -599,7 +489,7 @@ body.dark .notification-type,
 body.dark .reset-text,
 body.dark .cache,
 body.dark .text {
-  color: #f3f6fa;
+  color: #f3f6fa !important;
 }
 
 body.dark .top-nav-icons a,
@@ -645,7 +535,7 @@ body.dark .profile-input:disabled {
   cursor: not-allowed;
 }
 
-body.dark .notification-item + .notification-item,
+body.dark .notification-item+.notification-item,
 body.dark .clear-cache {
   border-top-color: #313d4c;
 }

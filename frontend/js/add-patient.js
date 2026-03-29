@@ -36,20 +36,21 @@ function calculateAge(dob) {
 /**
  * Create and inject the Add Patient modal
  */
-function createAddPatientModal() {
+function createPatientModal() {
   const modal = document.createElement("div");
   modal.className = "add-patient-modal";
-  modal.id = "addPatientModal";
+  modal.id = "patientModal";
   modal.innerHTML = `
     <div class="add-patient-modal-overlay"></div>
     <div class="add-patient-modal-content">
       <div class="add-patient-modal-header">
-        <h2>Add New Patient</h2>
+        <h2 id="modalTitle">Add New Patient</h2>
         <button type="button" class="add-patient-modal-close" aria-label="Close">
           <i class="fa-solid fa-times"></i>
         </button>
       </div>
-      <form id="addPatientForm" class="add-patient-form">
+      <form id="patientForm" class="add-patient-form">
+        <input type="hidden" id="editPatientId" name="id" value="">
         <div class="form-row">
           <div class="form-group">
             <label for="patientFirstName">First Name <span class="required">*</span></label>
@@ -144,49 +145,102 @@ function createAddPatientModal() {
           </div>
         </div>
         <div class="add-patient-form-actions">
-          <button type="button" class="btn-cancel" id="btnCancelAddPatient">Cancel</button>
-          <button type="submit" class="btn-submit">Add Patient</button>
+          <button type="button" class="btn-cancel" id="btnCancelPatient">Cancel</button>
+          <button type="submit" class="btn-submit" id="btnSubmitPatient">Add Patient</button>
         </div>
       </form>
     </div>
   `;
   document.body.appendChild(modal);
+  
+  // Attach cancel events immediately after creation
+  modal.querySelector(".add-patient-modal-close")?.addEventListener("click", closePatientModal);
+  modal.querySelector(".add-patient-modal-overlay")?.addEventListener("click", closePatientModal);
+  modal.querySelector("#btnCancelPatient")?.addEventListener("click", closePatientModal);
+  
   return modal;
 }
 
 /**
  * Show the Add Patient modal
  */
-function openAddPatientModal() {
-  const modal = document.getElementById("addPatientModal");
+function openPatientModal(mode = "add", patientId = null) {
+  const modal = document.getElementById("patientModal");
   if (modal) {
+    const title = modal.querySelector("#modalTitle");
+    const submitBtn = modal.querySelector("#btnSubmitPatient");
+    const form = modal.querySelector("#patientForm");
+    const editIdInput = modal.querySelector("#editPatientId");
+
     modal.classList.add("add-patient-modal--open");
-    modal.style.display = "block"; // Ensure visibility if not using custom CSS
+    modal.style.display = "block";
     document.body.style.overflow = "hidden";
 
-    const ageInput =
-      document.getElementById("patientAge") || document.getElementById("age");
-    if (ageInput) ageInput.value = "";
-
-    const form =
-      document.getElementById("addPatientForm") ||
-      document.getElementById("quickAddPatientForm");
     form?.reset();
-
     resetPhotoOnModalOpen();
 
-    const focusInput =
-      document.getElementById("patientFirstName") ||
-      document.getElementById("firstName");
+    if (mode === "edit" && patientId) {
+      title.textContent = "Edit Patient";
+      submitBtn.textContent = "Update Patient";
+      editIdInput.value = patientId;
+
+      // Ensure we have a valid patient before populating
+      const pidStr = String(patientId);
+      const patient = cachedPatients.find((p) => String(p.id) === pidStr);
+      
+      if (patient) {
+        // Populate all fields
+        const setVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.value = val || "";
+        };
+
+        setVal("patientFirstName", patient.firstName);
+        setVal("patientSurname", patient.surname);
+        setVal("patientOtherNames", patient.otherNames);
+        setVal("patientDob", patient.dob ? patient.dob.split("T")[0] : "");
+        setVal("patientAge", patient.dob ? calculateAge(patient.dob) : "");
+        setVal("patientAddress", patient.address);
+        setVal("patientGender", patient.gender);
+        setVal("patientBloodType", patient.bloodType);
+        setVal("patientContact", patient.contact);
+        setVal("patientGhanaCard", patient.ghanaCard);
+        setVal("patientEmergency1", patient.emergencyContact1);
+        setVal("patientEmergency2", patient.emergencyContact2);
+        
+        if (patient.photo) {
+          const previewImg = document.getElementById("patientPhotoPreview");
+          const placeholder = document.getElementById("photoPlaceholder");
+          const photoInput = document.getElementById("patientPhoto");
+          const btnRemovePhoto = document.getElementById("btnRemovePhoto");
+          
+          if (photoInput) photoInput.value = patient.photo;
+          if (previewImg) {
+            previewImg.src = patient.photo;
+            previewImg.style.display = "block";
+          }
+          if (placeholder) placeholder.style.display = "none";
+          if (btnRemovePhoto) btnRemovePhoto.style.display = "inline-flex";
+        }
+      } else {
+        console.error("Patient not found in cache:", patientId);
+        alert("Could not find patient data. Please refresh and try again.");
+        closePatientModal();
+        return;
+      }
+    } else {
+      title.textContent = "Add New Patient";
+      submitBtn.textContent = "Add Patient";
+      editIdInput.value = "";
+    }
+
+    const focusInput = document.getElementById("patientFirstName");
     focusInput?.focus();
   }
 }
 
-/**
- * Hide the Add Patient modal
- */
-function closeAddPatientModal() {
-  const modal = document.getElementById("addPatientModal");
+function closePatientModal() {
+  const modal = document.getElementById("patientModal");
   if (modal) {
     modal.classList.remove("add-patient-modal--open");
     modal.style.display = "none";
@@ -199,7 +253,6 @@ function closeAddPatientModal() {
  */
 async function addPatient(patientData) {
   try {
-    // Current user's ID as doctorId (defaulting to 1 if not available for demo fallback)
     const doctorId = window.currentUser ? Number(window.currentUser.id) : 1;
     const admissionDate = new Date().toISOString().split("T")[0];
 
@@ -213,20 +266,34 @@ async function addPatient(patientData) {
 
     if (response.status) {
       alert("Patient added successfully!");
-      closeAddPatientModal();
-
-      // Redirect or refresh
-      if (!window.location.pathname.includes("patients_data")) {
-        window.location.href = "patients_data.html";
-      } else {
-        renderPatientsTable();
-      }
+      closePatientModal();
+      renderPatientsTable(true);
     } else {
       alert("Error adding patient: " + (response.message || "Unknown error"));
     }
   } catch (error) {
     console.error("Add patient error:", error);
     alert("Failed to add patient. Please check all fields.");
+  }
+}
+
+/**
+ * Update patient via API
+ */
+async function updatePatient(patientId, patientData) {
+  try {
+    const response = await RetrigencyAPI.patients.update(patientId, patientData);
+
+    if (response.status) {
+      alert("Patient updated successfully!");
+      closePatientModal();
+      renderPatientsTable(true);
+    } else {
+      alert("Error updating patient: " + (response.message || "Unknown error"));
+    }
+  } catch (error) {
+    console.error("Update patient error:", error);
+    alert("Failed to update patient. Please check all fields.");
   }
 }
 
@@ -271,7 +338,7 @@ async function deletePatient(patientId) {
     const response = await RetrigencyAPI.patients.delete(patientId);
     if (response.status) {
       alert("Patient deleted successfully");
-      renderPatientsTable();
+      renderPatientsTable(true);
     } else {
       alert("Error deleting patient: " + (response.message || "Unknown error"));
     }
@@ -283,21 +350,27 @@ async function deletePatient(patientId) {
 
 /**
  * Render patients table
+ * @param {boolean} forceFetch - Whether to re-fetch from API
  */
-async function renderPatientsTable() {
+let cachedPatients = [];
+async function renderPatientsTable(forceFetch = false) {
   const tbody = document.querySelector(".patients-table tbody");
   const footer = document.querySelector(".patients-footer");
   if (!tbody) return;
 
-  tbody.innerHTML =
-    '<tr><td colspan="8" style="text-align:center;">Loading patients...</td></tr>';
+  // Only show loading if we are fetching or cache is empty
+  if (forceFetch || cachedPatients.length === 0) {
+    tbody.innerHTML =
+      '<tr><td colspan="8" style="text-align:center;">Loading patients...</td></tr>';
+    cachedPatients = await getPatients();
+  }
 
-  const patients = await getPatients();
   const searchInput = document.getElementById("patientSearch");
   const searchTypeSelect = document.getElementById("searchType");
   const query = searchInput ? searchInput.value : "";
   const searchType = searchTypeSelect ? searchTypeSelect.value : "all";
-  const filteredPatients = filterPatients(patients, query, searchType);
+  
+  const filteredPatients = filterPatients(cachedPatients, query, searchType);
 
   if (filteredPatients.length === 0) {
     tbody.innerHTML =
@@ -330,8 +403,7 @@ async function renderPatientsTable() {
           <td>${adDate}</td>
           <td><span class="status-badge ${statusClass}">${p.status}</span></td>
           <td class="table-actions">
-            <i class="fa-regular fa-eye" title="View"></i>
-            <i class="fa-regular fa-pen-to-square" title="Edit"></i>
+            <i class="fa-regular fa-pen-to-square table-edit-btn" data-patient-id="${p.id}" title="Edit"></i>
             <i class="fa-regular fa-trash-can table-delete-btn" data-patient-id="${
               p.id
             }" title="Delete"></i>
@@ -343,11 +415,12 @@ async function renderPatientsTable() {
   }
 
   if (footer) {
-    footer.textContent = `Showing ${filteredPatients.length} of ${patients.length} patients`;
+    footer.textContent = `Showing ${filteredPatients.length} of ${cachedPatients.length} patients`;
   }
 
   attachRowClickHandlers();
   attachDeleteHandlers();
+  attachEditHandlers();
 }
 
 /**
@@ -360,6 +433,22 @@ function attachDeleteHandlers() {
       const patientId = btn.getAttribute("data-patient-id");
       if (patientId) deletePatient(patientId);
     });
+  });
+}
+
+function attachEditHandlers() {
+  const table = document.querySelector(".patients-table");
+  if (!table) return;
+
+  // More reliable event delegation - handles icons correctly
+  const editBtns = table.querySelectorAll(".table-edit-btn");
+  editBtns.forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const patientId = btn.getAttribute("data-patient-id");
+      if (patientId) openPatientModal("edit", patientId);
+    };
   });
 }
 
@@ -476,25 +565,14 @@ function attachRowClickHandlers() {
  * Init
  */
 function init() {
-  let modal = document.getElementById("addPatientModal");
-  if (!modal) modal = createAddPatientModal();
+  let modal = document.getElementById("patientModal");
+  if (!modal) modal = createPatientModal();
 
   document.querySelectorAll(".add-patient-btn").forEach((btn) => {
-    btn.addEventListener("click", openAddPatientModal);
+    btn.addEventListener("click", () => openPatientModal("add"));
   });
 
-  modal
-    .querySelector(".add-patient-modal-close")
-    ?.addEventListener("click", closeAddPatientModal);
-  modal
-    .querySelector(".close-modal")
-    ?.addEventListener("click", closeAddPatientModal);
-  modal
-    .querySelector(".add-patient-modal-overlay")
-    ?.addEventListener("click", closeAddPatientModal);
-  document
-    .getElementById("btnCancelAddPatient")
-    ?.addEventListener("click", closeAddPatientModal);
+  // Handlers attached during creation
 
   initPhotoCapture(modal);
 
@@ -504,9 +582,19 @@ function init() {
       document.getElementById("patientAge").value = calculateAge(this.value);
     });
 
-  const patientForm =
-    document.getElementById("addPatientForm") ||
-    document.getElementById("quickAddPatientForm");
+  // Add search event listeners
+  const searchInput = document.getElementById("patientSearch");
+  const searchTypeSelect = document.getElementById("searchType");
+  
+  if (searchInput) {
+    searchInput.addEventListener("input", () => renderPatientsTable(false));
+  }
+  
+  if (searchTypeSelect) {
+    searchTypeSelect.addEventListener("change", () => renderPatientsTable(false));
+  }
+
+  const patientForm = document.getElementById("patientForm");
   patientForm?.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = {
@@ -540,10 +628,16 @@ function init() {
         document.getElementById("patientEmergency2")?.value || "",
       photo: document.getElementById("patientPhoto")?.value || "",
     };
-    addPatient(formData);
+    
+    const editId = document.getElementById("editPatientId")?.value;
+    if (editId) {
+      updatePatient(editId, formData);
+    } else {
+      addPatient(formData);
+    }
   });
 
-  renderPatientsTable();
+  renderPatientsTable(true);
 }
 
 if (document.readyState === "loading") {

@@ -684,7 +684,10 @@ button.add-patient-btn:hover {
 /* Add Patient Modal */
 .add-patient-modal {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 240px;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -703,8 +706,9 @@ button.add-patient-btn:hover {
 }
 
 .add-patient-modal-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: -1;
   background:
     radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.18), transparent 38%),
     radial-gradient(circle at 82% 78%, rgba(22, 163, 74, 0.18), transparent 46%),
@@ -1648,6 +1652,10 @@ body.dark .mobile-menu-toggle {
     gap: 16px;
   }
 
+  .add-patient-modal {
+    left: 0; /* Reset bound on mobile */
+    padding: 24px;
+  }
   .stats-card {
     flex: 1 1 calc(50% - 16px);
     max-width: none;
