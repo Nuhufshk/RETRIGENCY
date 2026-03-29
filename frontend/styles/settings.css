@@ -638,6 +638,13 @@ body.dark .profile-input {
   border-color: #313d4c;
 }
 
+body.dark .profile-input:disabled {
+  background-color: #2a3340 !important;
+  color: #a8b4c2 !important;
+  border-color: #3d4b5c !important;
+  cursor: not-allowed;
+}
+
 body.dark .notification-item + .notification-item,
 body.dark .clear-cache {
   border-top-color: #313d4c;

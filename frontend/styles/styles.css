@@ -1455,12 +1455,26 @@ body.dark .search-type-select,
 body.dark .search-box input,
 body.dark .add-patient-form input,
 body.dark .add-patient-form select,
+body.dark .profile-input,
+body.dark .form-control,
 body.dark .btn-back,
 body.dark .confirm-modal-actions .btn-cancel,
 body.dark .btn-cancel,
 body.dark .photo-capture-preview {
   background: #1e2733;
   border-color: #313d4c;
+  color: #f3f6fa;
+}
+
+/* Fix visibility for disabled/readonly fields in dark mode */
+body.dark input:disabled, 
+body.dark input[readonly],
+body.dark .profile-input:disabled,
+body.dark .form-control:disabled {
+  background-color: #2a3340 !important;
+  color: #a8b4c2 !important;
+  cursor: not-allowed;
+  border-color: #3d4b5c !important;
 }
 
 body.dark .add-patient-modal-overlay {
