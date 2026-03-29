@@ -1,5 +1,5 @@
-const MediTrackAPI = (() => {
-  const BASE_URL = MeditrackConfig.API_BASE_URL;
+const RetrigencyAPI = (() => {
+  const BASE_URL = RetrigencyConfig.API_BASE_URL;
 
   // Create axios instance with default config
   const api = axios.create({

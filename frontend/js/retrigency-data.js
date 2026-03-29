@@ -1,9 +1,9 @@
 /**
- * MediTrack Shared Data
+ * Retrigency Shared Data
  * Activities log, stats, Face ID count - used by dashboard, add-patient, patient-detail
  */
-const STORAGE_ACTIVITIES = 'meditrack_activities';
-const STORAGE_FACE_ID = 'meditrack_face_id_scans';
+const STORAGE_ACTIVITIES = 'retrigency_activities';
+const STORAGE_FACE_ID = 'retrigency_face_id_scans';
 
 /**
  * Add activity to log

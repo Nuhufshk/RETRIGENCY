@@ -131,7 +131,7 @@ function initSidebarPageTransitions() {
         if (!shouldLogout) return;
 
         try {
-          await MediTrackAPI.auth.logout();
+          await RetrigencyAPI.auth.logout();
         } catch (e) {
           console.error("Logout error:", e);
         }
@@ -166,7 +166,7 @@ function initSidebarPageTransitions() {
 async function syncSettings(settings) {
   if (!window.currentUser) return;
   try {
-    await MediTrackAPI.profiles.updateSettings(window.currentUser.id, settings);
+    await RetrigencyAPI.profiles.updateSettings(window.currentUser.id, settings);
   } catch (e) {
     console.error("Failed to sync settings with backend:", e);
   }
@@ -274,7 +274,7 @@ if (loginForm) {
     }
 
     try {
-      const data = await MediTrackAPI.auth.login(staffId, password);
+      const data = await RetrigencyAPI.auth.login(staffId, password);
 
       // Successful login
       if (data.token) {
@@ -339,7 +339,7 @@ if (retrieveForm) {
     }
 
     try {
-      const data = await MediTrackAPI.auth.forgotPassword({
+      const data = await RetrigencyAPI.auth.forgotPassword({
         staffId,
         email,
         phone,
@@ -396,7 +396,7 @@ const modalTitle = document.getElementById("modalTitle");
 if (notificationsList) {
   async function loadNotifications() {
     try {
-      const response = await MediTrackAPI.notifications.getAll();
+      const response = await RetrigencyAPI.notifications.getAll();
       if (response.status) {
         renderNotifications(response.data);
       }
@@ -442,7 +442,7 @@ if (notificationsList) {
   // Global functions for inline actions
   window.editNotification = async (id) => {
     try {
-      const response = await MediTrackAPI.notifications.getById(id);
+      const response = await RetrigencyAPI.notifications.getById(id);
       if (response.status) {
         const n = response.data;
         document.getElementById("notificationId").value = n.id;
@@ -459,7 +459,7 @@ if (notificationsList) {
   window.deleteNotification = async (id) => {
     if (!confirm("Are you sure you want to delete this notification?")) return;
     try {
-      const response = await MediTrackAPI.notifications.delete(id);
+      const response = await RetrigencyAPI.notifications.delete(id);
       if (response.status) {
         loadNotifications();
       }
@@ -499,9 +499,9 @@ if (notificationsList) {
       try {
         let response;
         if (id) {
-          response = await MediTrackAPI.notifications.update(id, data);
+          response = await RetrigencyAPI.notifications.update(id, data);
         } else {
-          response = await MediTrackAPI.notifications.create(data);
+          response = await RetrigencyAPI.notifications.create(data);
         }
 
         if (response.status) {

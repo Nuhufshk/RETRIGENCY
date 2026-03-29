@@ -85,7 +85,7 @@ function formatRelativeTime(isoString) {
 
 async function initDashboard() {
   try {
-    const response = await MediTrackAPI.dashboard.getData();
+    const response = await RetrigencyAPI.dashboard.getData();
     if (response.status) {
       updateDashboard(response.data);
     }

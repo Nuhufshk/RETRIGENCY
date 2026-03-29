@@ -22,7 +22,7 @@
     // but if the user IS logged in, we might want to redirect them to the dashboard.
     
     try {
-      const response = await MediTrackAPI.auth.me();
+      const response = await RetrigencyAPI.auth.me();
       
       if (response.status && response.user) {
         // User is authenticated
@@ -54,9 +54,9 @@
   }
 
   // Run check on load
-  if (typeof MediTrackAPI !== "undefined") {
+  if (typeof RetrigencyAPI !== "undefined") {
     checkAuth();
   } else {
-    console.error("MediTrackAPI not found. Auth guard cannot run.");
+    console.error("RetrigencyAPI not found. Auth guard cannot run.");
   }
 })();

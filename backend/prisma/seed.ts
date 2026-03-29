@@ -20,16 +20,16 @@ async function main() {
 
     // 2. Create Users & Profiles
     const userData = [
-        { email: "josiah.akorli@meditrack.gh", firstName: "Josiah", middleName: "Mawulorm", lastName: "Akorli", staffId: 8989123 },
-        { email: "kelvin.obeng@meditrack.gh", firstName: "Kelvin", middleName: "Ofosu", lastName: "Obeng", staffId: 9031823 },
-        { email: "dennis.konde@meditrack.gh", firstName: "Dennis", middleName: "Dawuni", lastName: "Konde", staffId: 9023223 },
-        { email: "kelvin.anaba@meditrack.gh", firstName: "Kelvin", middleName: "Ayinedenaba", lastName: "Anaba", staffId: 8995023 },
-        { email: "kwame.biney@meditrack.gh", firstName: "Kwame", middleName: "Akyea", lastName: "Biney", staffId: 9009323 },
-        { email: "nana.hwedie@meditrack.gh", firstName: "Nana Kweku", middleName: "Osei", lastName: "Hwedie", staffId: 9021823 },
-        { email: "haruna.nuhu@meditrack.gh", firstName: "Haruna", middleName: null, lastName: "Nuhu", staffId: 9030323 },
-        { email: "genevieve.oppong@meditrack.gh", firstName: "Genevieve", middleName: "Gyabaa", lastName: "Oppong", staffId: 9035723 },
-        { email: "sandra.eshun@meditrack.gh", firstName: "Sandra", middleName: null, lastName: "Eshun", staffId: 9018123 },
-        { email: "michael.yeboah@meditrack.gh", firstName: "Michael", middleName: "Kweku", lastName: "Yeboah", staffId: 9048123 },
+        { email: "josiah.akorli@retrigency.gh", firstName: "Josiah", middleName: "Mawulorm", lastName: "Akorli", staffId: 8989123 },
+        { email: "kelvin.obeng@retrigency.gh", firstName: "Kelvin", middleName: "Ofosu", lastName: "Obeng", staffId: 9031823 },
+        { email: "dennis.konde@retrigency.gh", firstName: "Dennis", middleName: "Dawuni", lastName: "Konde", staffId: 9023223 },
+        { email: "kelvin.anaba@retrigency.gh", firstName: "Kelvin", middleName: "Ayinedenaba", lastName: "Anaba", staffId: 8995023 },
+        { email: "kwame.biney@retrigency.gh", firstName: "Kwame", middleName: "Akyea", lastName: "Biney", staffId: 9009323 },
+        { email: "nana.hwedie@retrigency.gh", firstName: "Nana Kweku", middleName: "Osei", lastName: "Hwedie", staffId: 9021823 },
+        { email: "haruna.nuhu@retrigency.gh", firstName: "Haruna", middleName: null, lastName: "Nuhu", staffId: 9030323 },
+        { email: "genevieve.oppong@retrigency.gh", firstName: "Genevieve", middleName: "Gyabaa", lastName: "Oppong", staffId: 9035723 },
+        { email: "sandra.eshun@retrigency.gh", firstName: "Sandra", middleName: null, lastName: "Eshun", staffId: 9018123 },
+        { email: "michael.yeboah@retrigency.gh", firstName: "Michael", middleName: "Kweku", lastName: "Yeboah", staffId: 9048123 },
     ];
 
     const users = await Promise.all(

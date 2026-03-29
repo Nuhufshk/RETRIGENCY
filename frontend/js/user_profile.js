@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function init() {
     try {
-      const meResponse = await MediTrackAPI.auth.me();
+      const meResponse = await RetrigencyAPI.auth.me();
       if (!meResponse.status) throw new Error("Failed to fetch user info");
       const user = meResponse.user;
       currentUserId = user.id;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (profileForm.emailInput) profileForm.emailInput.value = user.email;
 
       try {
-        const profileResponse = await MediTrackAPI.profiles.getByUserId(currentUserId);
+        const profileResponse = await RetrigencyAPI.profiles.getByUserId(currentUserId);
         if (profileResponse.status && profileResponse.data) {
           currentProfile = profileResponse.data;
           updateProfileUI(currentProfile);
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Persist name to localStorage for all pages
-    localStorage.setItem("meditrack_user_name", firstName);
+    localStorage.setItem("retrigency_user_name", firstName);
 
     // Update top nav on current page immediately
     document.querySelectorAll(".user p").forEach((el) => {
@@ -159,9 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
       saveProfileBtn.textContent = "Saving...";
 
       // Run profile update and email update in parallel
-      const tasks = [MediTrackAPI.profiles.upsert(currentUserId, profileData)];
+      const tasks = [RetrigencyAPI.profiles.upsert(currentUserId, profileData)];
       if (newEmail && newEmail !== profileForm.emailInput.defaultValue) {
-        tasks.push(MediTrackAPI.users.update(currentUserId, { email: newEmail }));
+        tasks.push(RetrigencyAPI.users.update(currentUserId, { email: newEmail }));
       }
       await Promise.all(tasks);
 
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Refresh profile data and reflect in UI
-      const refreshed = await MediTrackAPI.profiles.getByUserId(currentUserId);
+      const refreshed = await RetrigencyAPI.profiles.getByUserId(currentUserId);
       currentProfile = refreshed.data;
       updateProfileUI(currentProfile);
     } catch (error) {
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       saveSettingsBtn.disabled = true;
       saveSettingsBtn.textContent = "Saving...";
-      const response = await MediTrackAPI.profiles.updateSettings(currentUserId, settingsData);
+      const response = await RetrigencyAPI.profiles.updateSettings(currentUserId, settingsData);
       if (response.status) {
         alert("Settings updated successfully!");
         document.body.classList.toggle("dark", settingsData.theme === "dark");

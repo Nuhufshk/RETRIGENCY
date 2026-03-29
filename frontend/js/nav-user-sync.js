@@ -5,7 +5,7 @@
  */
 (function () {
   function applyName() {
-    const name = localStorage.getItem("meditrack_user_name") || "Staff";
+    const name = localStorage.getItem("retrigency_user_name") || "Staff";
     // Pattern 1: <p>Staff</p> inside .user div (dashboard, patients)
     document.querySelectorAll(".user p").forEach((el) => {
       if (el.textContent.trim() === "Staff" || el.dataset.navUser) {

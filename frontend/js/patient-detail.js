@@ -4,7 +4,7 @@
 
 async function getPatientById(id) {
   try {
-    const response = await MediTrackAPI.patients.getById(id);
+    const response = await RetrigencyAPI.patients.getById(id);
     return response.status ? response.data : null;
   } catch (error) {
     console.error("Failed to fetch patient:", error);
@@ -16,7 +16,7 @@ async function dischargePatient(patientId) {
   try {
     if (!confirm("Are you sure you want to discharge this patient?")) return;
 
-    const response = await MediTrackAPI.patients.update(patientId, { status: 'Inactive' }); // Backend schema uses 'Inactive' instead of 'Discharged'
+    const response = await RetrigencyAPI.patients.update(patientId, { status: 'Inactive' }); // Backend schema uses 'Inactive' instead of 'Discharged'
     if (response.status) {
       alert('Patient discharged successfully');
       renderPatientDetail(patientId);
@@ -33,7 +33,7 @@ async function deletePatient(patientId) {
   try {
     if (!confirm("Are you sure you want to delete this patient record? This cannot be undone.")) return;
 
-    const response = await MediTrackAPI.patients.delete(patientId);
+    const response = await RetrigencyAPI.patients.delete(patientId);
     if (response.status) {
       alert('Patient deleted successfully');
       window.location.href = 'patients_data.html';

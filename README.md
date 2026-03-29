@@ -1,6 +1,6 @@
-# MediTrack
+# Retrigency
 
-MediTrack is a full-stack hospital management system designed to track patients, manage admissions, and provide a comprehensive dashboard for medical staff.
+Retrigency is a full-stack hospital management system designed to track patients, manage admissions, and provide a comprehensive dashboard for medical staff.
 
 ## Technology Stack
 
@@ -25,7 +25,7 @@ You need to have Docker and Docker Compose installed on your system.
 1. **Clone the repository** (if you haven't already):
    ```bash
    git clone <repository-url>
-   cd meditrack
+   cd retrigency
    ```
 
 2. **Start the application**:
@@ -54,7 +54,7 @@ The application relies on environment variables, which are pre-configured in the
 If you are setting this up manually or deploying to production, ensure these are securely set in your environment:
 
 - `DATABASE_URL`: Connection string for Prisma to connect to the PostgreSQL database.
-  *Example used in Docker*: `postgresql://meditrack_user:meditrack_password@db:5432/meditrack_db?schema=public`
+  *Example used in Docker*: `postgresql://retrigency_user:retrigency_password@db:5432/retrigency_db?schema=public`
 - `JWT_SECRET`: Secret key used for signing JSON Web Tokens for authentication. Ensure this is a strong, random string in production.
 
 ## Troubleshooting

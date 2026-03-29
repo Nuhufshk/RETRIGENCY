@@ -1,5 +1,5 @@
 /**
- * MediTrack Add Patient & Patient Management
+ * Retrigency Add Patient & Patient Management
  * Handles: Add patient form, modal, validation, confirmation, table updates, row clicks
  */
 
@@ -8,7 +8,7 @@
  */
 async function getPatients() {
   try {
-    const response = await MediTrackAPI.patients.getAll();
+    const response = await RetrigencyAPI.patients.getAll();
     return response.status ? response.data : [];
   } catch (error) {
     console.error("Failed to fetch patients:", error);
@@ -209,7 +209,7 @@ async function addPatient(patientData) {
       admissionDate,
     };
 
-    const response = await MediTrackAPI.patients.create(payload);
+    const response = await RetrigencyAPI.patients.create(payload);
 
     if (response.status) {
       alert("Patient added successfully!");
@@ -268,7 +268,7 @@ async function deletePatient(patientId) {
     )
       return;
 
-    const response = await MediTrackAPI.patients.delete(patientId);
+    const response = await RetrigencyAPI.patients.delete(patientId);
     if (response.status) {
       alert("Patient deleted successfully");
       renderPatientsTable();
