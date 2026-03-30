@@ -1,298 +1,285 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
 
-    <!--Styles-->
-    <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
 
-    <!-- Icons  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+  <!--Styles-->
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
 
-    <link rel="icon" href="../images/retrigency-logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@0,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/api.js"></script>
-    <script src="../js/auth-guard.js"></script>
-  </head>
-  <body>
-    <!-- Sidebar -->
-    
-    <div class="sidebar-overlay"></div>
-<div class="sidebar">
-      <div class="logo-area">
-        <img
-          src="../images/retrigency-logo.png"
-          alt="Retrigency logo"
-          class="logo-img"
-        />
+  <!-- Icons  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="icon" href="../images/retrigency-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@0,100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body>
+  <!-- Sidebar -->
+
+  <div class="sidebar-overlay"></div>
+  <div class="sidebar">
+    <div class="logo-area">
+      <img src="../images/retrigency-logo.png" alt="Retrigency logo" class="logo-img" />
+    </div>
+
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.html" class="active">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="patients_data.html">
+          <i class="fa-regular fa-circle-user"></i>
+          <span>Patients</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="Face_id.html">
+          <ion-icon name="scan-outline"></ion-icon>
+          <span>Face ID</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="help.html">
+          <i class="fa-solid fa-circle-question"></i>
+          <span>Help</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="settings.html">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+      </li>
+
+      <li class="logout">
+        <a href="../index.html">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer"></div>
+  </div>
+  <div class="main-wrapper">
+    <div class="dashboard">
+      <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+
+
+      <p>Dashboard</p>
+
+      <div class="right-side">
+        <div class="right">
+          <a href="notifications.html" class="notification-link">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+          </a>
+        </div>
+
+        <a href="user_profile.html">
+          <div class="user">
+            <i class="fa-regular fa-user"></i>
+            <p>Staff</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Top Bar -->
+      <div class="topbar">
+        <div class="welcome-text">
+          <h1>Welcome Back!</h1>
+          <p class="sub-text">
+            Here's what's happening in your hospital today.
+          </p>
+        </div>
       </div>
 
-      <ul class="nav-links">
-        <li>
-          <a href="dashboard.html" class="active">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
+      <div class="stat-card-section">
+        <section class="stats-section">
+          <div class="stats-card">
+            <div class="stat-header">
+              <p>Total Patients</p>
+              <i class="fa-solid fa-hospital-user"></i>
+            </div>
+            <h3 id="totalPatients">0</h3>
+            <p>0 added today</p>
+          </div>
+          <div class="stats-card">
+            <div class="stat-header">
+              <p>Today's Admissions</p>
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <h3 id="todayAdmissions">0</h3>
+            <p>0 pending verification</p>
+          </div>
 
-        <li>
-          <a href="patients_data.html">
-            <i class="fa-regular fa-circle-user"></i>
-            <span>Patients</span>
-          </a>
-        </li>
+          <div class="stats-card">
+            <div class="stat-header">
+              <p>Face ID Scans</p>
+              <ion-icon name="scan-outline"></ion-icon>
+            </div>
+            <h3 id="faceScans">0</h3>
+            <p>Today</p>
+          </div>
 
-        <li>
-          <a href="Face_id.html">
-            <ion-icon name="scan-outline"></ion-icon>
-            <span>Face ID</span>
-          </a>
-        </li>
+          <div class="stats-card">
+            <div class="stat-header">
+              <p>Active Cases</p>
+              <i class="fa-solid fa-bed-pulse"></i>
+            </div>
+            <h3 id="activeCases">0</h3>
+            <p>Currently in hospital</p>
+          </div>
+        </section>
+      </div>
+      <!-- Quick links to core modules -->
+      <div class="dashboard-main">
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2>Quick Actions</h2>
+          </div>
 
-        <li>
-          <a href="help.html">
-            <i class="fa-solid fa-circle-question"></i>
-            <span>Help</span>
-          </a>
-        </li>
+          <div class="quick-links">
+            <a href="#" class="card-btn add-patient-btn">
+              <div class="card">
+                <div class="card-icon-patient">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
 
-        <li>
-          <a href="settings.html">
-            <i class="fa-solid fa-gear"></i>
-            <span>Settings</span>
-          </a>
-        </li>
+                <h3>Add New Patient</h3>
 
-        <li class="logout">
-          <a href="../index.html">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span>
-          </a>
-        </li>
-      </ul>
-      <div class="sidebar-footer"></div>
-    </div>
-    <div class="main-wrapper">
-      <div class="dashboard">
-            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
-        
-        
-        <p>Dashboard</p>
+                <p>Register a new patient record.</p>
+              </div>
+            </a>
 
-        <div class="right-side">
-          <div class="right">
-            <a href="notifications.html" class="notification-link">
-              <i class="fa-regular fa-bell"></i>
-              <span class="notification-dot"></span>
+            <a href="Face_id.html" class="card-btn">
+              <div class="card">
+                <div class="card-icon-face-id">
+                  <ion-icon name="scan-outline"></ion-icon>
+                </div>
+
+                <h3>Face Identification</h3>
+
+                <p>Scan patient for ID</p>
+              </div>
+            </a>
+
+            <a href="patients_data.html" class="card-btn">
+              <div class="card">
+                <div class="card-icon-view-all">
+                  <i class="fa-solid fa-users"></i>
+                </div>
+
+                <h3>View All Patients</h3>
+
+                <p>Browse patient database</p>
+              </div>
+            </a>
+
+            <a href="reports.html" class="card-btn">
+              <div class="card">
+                <div class="card-icon-report">
+                  <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <h3>Generate Reports</h3>
+
+                <p>Create system reports</p>
+              </div>
             </a>
           </div>
-
-          <a href="user_profile.html"
-            ><div class="user">
-              <i class="fa-regular fa-user"></i>
-              <p>Staff</p>
-            </div></a
-          >
-        </div>
+        </section>
       </div>
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Top Bar -->
-        <div class="topbar">
-          <div class="welcome-text">
-            <h1>Welcome Back!</h1>
-            <p class="sub-text">
-              Here's what's happening in your hospital today.
-            </p>
-          </div>
-        </div>
 
-        <div class="stat-card-section">
-          <section class="stats-section">
-            <div class="stats-card">
-              <div class="stat-header">
-                <p>Total Patients</p>
-                <i class="fa-solid fa-hospital-user"></i>
-              </div>
-              <h3 id="totalPatients">0</h3>
-              <p>0 added today</p>
-            </div>
-            <div class="stats-card">
-              <div class="stat-header">
-                <p>Today's Admissions</p>
-                <i class="fa-solid fa-user-plus"></i>
-              </div>
-              <h3 id="todayAdmissions">0</h3>
-              <p>0 pending verification</p>
-            </div>
-
-            <div class="stats-card">
-              <div class="stat-header">
-                <p>Face ID Scans</p>
-                <ion-icon name="scan-outline"></ion-icon>
-              </div>
-              <h3 id="faceScans">0</h3>
-              <p>Today</p>
-            </div>
-
-            <div class="stats-card">
-              <div class="stat-header">
-                <p>Active Cases</p>
-                <i class="fa-solid fa-bed-pulse"></i>
-              </div>
-              <h3 id="activeCases">0</h3>
-              <p>Currently in hospital</p>
-            </div>
-          </section>
-        </div>
-        <!-- Quick links to core modules -->
-        <div class="dashboard-main">
-          <section class="dashboard-section">
-            <div class="section-header">
-              <h2>Quick Actions</h2>
-            </div>
-
-            <div class="quick-links">
-              <a href="#" class="card-btn add-patient-btn">
-                <div class="card">
-                  <div class="card-icon-patient">
-                    <i class="fa-solid fa-user-plus"></i>
-                  </div>
-
-                  <h3>Add New Patient</h3>
-
-                  <p>Register a new patient record.</p>
-                </div></a
-              >
-
-              <a href="Face_id.html" class="card-btn">
-                <div class="card">
-                  <div class="card-icon-face-id">
-                    <ion-icon name="scan-outline"></ion-icon>
-                  </div>
-
-                  <h3>Face Identification</h3>
-
-                  <p>Scan patient for ID</p>
-                </div>
-              </a>
-
-              <a href="patients_data.html" class="card-btn">
-                <div class="card">
-                  <div class="card-icon-view-all">
-                    <i class="fa-solid fa-users"></i>
-                  </div>
-
-                  <h3>View All Patients</h3>
-
-                  <p>Browse patient database</p>
-                </div>
-              </a>
-
-              <a href="reports.html" class="card-btn">
-                <div class="card">
-                  <div class="card-icon-report">
-                    <i class="fa-solid fa-file-lines"></i>
-                  </div>
-
-                  <h3>Generate Reports</h3>
-
-                  <p>Create system reports</p>
-                </div>
-              </a>
-            </div>
-          </section>
-        </div>
-
-        <div class="recent-activity-wrapper">
-          <h2>Recent Activity</h2>
-          <div class="recent-activity-list" id="activityList">
-            <div class="recent-activity-item">
-              <span class="activity-tag grey">No recent activity</span>
-            </div>
+      <div class="recent-activity-wrapper">
+        <h2>Recent Activity</h2>
+        <div class="recent-activity-list" id="activityList">
+          <div class="recent-activity-item">
+            <span class="activity-tag grey">No recent activity</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modals -->
-    <div id="addPatientModal" class="add-patient-modal">
-      <div class="add-patient-modal-overlay"></div>
-      <div class="add-patient-modal-content">
-        <div class="add-patient-modal-header">
-          <h2>Add New Patient</h2>
-          <button class="add-patient-modal-close">&times;</button>
-        </div>
-        <form id="quickAddPatientForm" class="add-patient-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name*</label>
-              <input type="text" id="firstName" required />
-            </div>
-            <div class="form-group">
-              <label for="surname">Surname*</label>
-              <input type="text" id="surname" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="patientDob">Date of Birth*</label>
-              <input type="date" id="patientDob" required />
-            </div>
-            <div class="form-group">
-              <label for="patientAge">Age</label>
-              <input type="text" id="patientAge" readonly />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="gender">Gender</label>
-              <select id="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="contact">Contact Number</label>
-              <input type="tel" id="contact" placeholder="050-000-0000" />
-            </div>
-          </div>
-          <div class="add-patient-form-actions">
-            <button type="button" class="btn-cancel close-modal" id="btnCancelAddPatient">Cancel</button>
-            <button type="submit" class="btn-submit">Add Patient</button>
-          </div>
-        </form>
+  <!-- Modals -->
+  <div id="addPatientModal" class="add-patient-modal">
+    <div class="add-patient-modal-overlay"></div>
+    <div class="add-patient-modal-content">
+      <div class="add-patient-modal-header">
+        <h2>Add New Patient</h2>
+        <button class="add-patient-modal-close">&times;</button>
       </div>
+      <form id="quickAddPatientForm" class="add-patient-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name*</label>
+            <input type="text" id="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname*</label>
+            <input type="text" id="surname" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patientDob">Date of Birth*</label>
+            <input type="date" id="patientDob" required />
+          </div>
+          <div class="form-group">
+            <label for="patientAge">Age</label>
+            <input type="text" id="patientAge" readonly />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact Number</label>
+            <input type="tel" id="contact" placeholder="050-000-0000" />
+          </div>
+        </div>
+        <div class="add-patient-form-actions">
+          <button type="button" class="btn-cancel close-modal" id="btnCancelAddPatient">Cancel</button>
+          <button type="submit" class="btn-submit">Add Patient</button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-    <script src="../js/Scripting.js"></script>
-    <script src="../js/nav-user-sync.js"></script>
-    <script src="../js/notification-badge.js"></script>
-    <script src="../js/retrigency-data.js"></script>
-    <script src="../js/add-patient.js"></script>
-    <script src="../js/dashboard.js"></script>
-  
-    <script src="../js/mobile-menu.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="../js/Scripting.js"></script>
+  <script src="../js/nav-user-sync.js"></script>
+  <script src="../js/notification-badge.js"></script>
+  <script src="../js/retrigency-data.js"></script>
+  <script src="../js/add-patient.js"></script>
+  <script src="../js/dashboard.js"></script>
+
+  <script src="../js/mobile-menu.js"></script>
 </body>
+
 </html>

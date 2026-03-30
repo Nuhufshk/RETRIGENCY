@@ -186,12 +186,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   saveSettingsBtn?.addEventListener("click", async () => {
     if (!currentUserId) return;
+    
+    // Check if the theme dropdown exists, otherwise fallback to current body class
+    const selectedTheme = settingsForm.theme ? settingsForm.theme.value : (document.body.classList.contains("dark") ? "dark" : "light");
+    
     const settingsData = {
-      theme: settingsForm.theme.value,
-      language: settingsForm.language.value,
-      emailNotification: settingsForm.emailNotification.checked,
-      pushNotification: settingsForm.pushNotification.checked,
-      smsNotification: settingsForm.smsNotification.checked
+      theme: selectedTheme,
+      language: settingsForm.language ? settingsForm.language.value : "english",
+      emailNotification: settingsForm.emailNotification ? settingsForm.emailNotification.checked : true,
+      pushNotification: settingsForm.pushNotification ? settingsForm.pushNotification.checked : true,
+      smsNotification: settingsForm.smsNotification ? settingsForm.smsNotification.checked : true
     };
     try {
       saveSettingsBtn.disabled = true;

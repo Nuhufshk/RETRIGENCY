@@ -1,13 +1,13 @@
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: "Poppins", sans-serif; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-body { 
-    background-color: #f8f9fa; 
-    color: #2c3e50; 
+body {
+    background-color: #f8f9fa;
+    color: #2c3e50;
 }
 
 /* Base Layout */
@@ -43,10 +43,12 @@ body {
 
 /* Centered Content Area */
 .content-wrapper {
-    flex: 1; /* Consumes remaining vertical space below nav */
+    flex: 1;
+    /* Consumes remaining vertical space below nav */
     display: flex;
     justify-content: center;
-    align-items: center; /* Perfect vertical centering */
+    align-items: center;
+    /* Perfect vertical centering */
     padding: 32px;
     width: 100%;
 }
@@ -77,30 +79,34 @@ body {
     height: 140px;
     width: 140px;
     border-radius: 50%;
-    background-color: #f0f0f0; /* Subtler background for the icon */
+    background-color: #f0f0f0;
+    /* Subtler background for the icon */
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 24px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .image i {
-    color: #a8b4c2 !important; /* Soft grey instead of pure white */
+    color: #a8b4c2 !important;
+    /* Soft grey instead of pure white */
 }
 
 .profile-card .text-data {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 8px; /* Spacing between fields */
+    gap: 8px;
+    /* Spacing between fields */
 }
 
 .profile-field {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px; /* Space between the heading and detail */
+    gap: 12px;
+    /* Space between the heading and detail */
     padding: 16px 0;
     border-bottom: 1px solid #f0f0f0;
 }
@@ -113,7 +119,8 @@ body {
     font-size: 15px;
     font-weight: 600;
     color: #2c3e50;
-    min-width: 140px; /* Optional: Gives labels a consistent width so details line up vertically */
+    min-width: 140px;
+    /* Optional: Gives labels a consistent width so details line up vertically */
 }
 
 .profile-field span:last-child {
@@ -133,34 +140,41 @@ body {
 
 /* Offset Bootstrap Modals to perfectly center over main workspace and not the sidebar */
 @media (min-width: 901px) {
-    #editProfileModal, #settingsModal {
-        left: 240px; 
+
+    #editProfileModal,
+    #settingsModal {
+        left: 240px;
     }
 }
 
 /* Mobile Adjustments */
 @media (max-width: 900px) {
     .main-content {
-        margin-left: 0; /* Let mobile menu handle sidebar */
+        margin-left: 0;
+        /* Let mobile menu handle sidebar */
         width: 100%;
     }
-    
+
     .content-wrapper {
         padding: 16px;
     }
-    
+
     .profile-card {
         padding: 24px;
     }
-    
+
     .profile-field {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
     }
-    
+
     .profile-field span:last-child {
         text-align: left;
+    }
+
+    .top-nav-text {
+        display: none;
     }
 }
 

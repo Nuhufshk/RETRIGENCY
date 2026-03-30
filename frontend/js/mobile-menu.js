@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     const mobileToggleBtns = document.querySelectorAll('.mobile-menu-toggle');
     const overlay = document.querySelector('.sidebar-overlay');
-    
+
     if (!sidebar) return; // Not a sidebar page
 
     function openSidebar() {

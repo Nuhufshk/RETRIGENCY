@@ -440,6 +440,12 @@ h1 {
   }
 }
 
+@media (max-width: 768px) {
+  .top-nav-text {
+    display: none;
+  }
+}
+
 @media (max-width: 680px) {
   .top-nav {
     padding: 16px 20px;

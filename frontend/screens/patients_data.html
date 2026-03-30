@@ -1,120 +1,94 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patients Data</title>
-    <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@0,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="../images/retrigency-logo.png">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/api.js"></script>
-    <script src="../js/auth-guard.js"></script>
-  </head>
 
-  <body class="patients-data-page">
-    
-    <div class="sidebar-overlay"></div>
-<div class="sidebar">
-      <div class="logo-area">
-        <img
-          src="../images/retrigency-logo.png"
-          alt="Retrigency logo"
-          class="logo-img"
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patients Data</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/sidebar-transitions.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@0,100..900&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../images/retrigency-logo.png">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body class="patients-data-page">
+
+  <div class="sidebar-overlay"></div>
+  <div class="sidebar">
+    <div class="logo-area">
+      <img src="../images/retrigency-logo.png" alt="Retrigency logo" class="logo-img" />
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+      </li>
+      <li>
+        <a href="patients_data.html" class="active"><i class="fa-regular fa-circle-user"></i><span>Patients</span></a>
+      </li>
+      <!-- here -->
+      <li>
+        <a href="Face_id.html"><ion-icon name="scan-outline"></ion-icon><span>Face ID</span></a>
+      </li>
+      <li>
+        <a href="help.html"><i class="fa-solid fa-circle-question"></i><span>Help</span></a>
+      </li>
+      <li>
+        <a href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </li>
+      <li class="logout">
+        <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+      </li>
+    </ul>
+    <div class="sidebar-footer"></div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="page-header">
+      <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+
+
+      <h1>Patients</h1>
+      <div class="right-side">
+        <a href="notifications.html" class="notification-link">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notification-dot"></span>
+        </a>
+        <a href="user_profile.html" class="user">
+          <i class="fa-regular fa-user"></i>
+          <p>Staff</p>
+        </a>
       </div>
-      <ul class="nav-links">
-        <li>
-          <a href="dashboard.html"
-            ><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a
-          >
-        </li>
-        <li>
-          <a href="patients_data.html" class="active"
-            ><i class="fa-regular fa-circle-user"></i><span>Patients</span></a
-          >
-        </li>
-        <!-- here -->
-        <li>
-          <a href="Face_id.html"
-            ><ion-icon name="scan-outline"></ion-icon><span>Face ID</span></a
-          >
-        </li>
-        <li>
-          <a href="help.html"
-            ><i class="fa-solid fa-circle-question"></i><span>Help</span></a
-          >
-        </li>
-        <li>
-          <a href="settings.html"
-            ><i class="fa-solid fa-gear"></i><span>Settings</span></a
-          >
-        </li>
-        <li class="logout">
-          <a href="../index.html"
-            ><i class="fa-solid fa-right-from-bracket"></i
-            ><span>Logout</span></a
-          >
-        </li>
-      </ul>
-      <div class="sidebar-footer"></div>
     </div>
 
-    <div class="main-wrapper">
-      <div class="page-header">
-            <button class="mobile-menu-toggle"><i class="fa-solid fa-bars"></i></button>
-        
-        
-        <h1>Patients</h1>
-        <div class="right-side">
-          <a href="notifications.html" class="notification-link">
-            <i class="fa-regular fa-bell"></i>
-            <span class="notification-dot"></span>
-          </a>
-          <a href="user_profile.html" class="user">
-            <i class="fa-regular fa-user"></i>
-            <p>Staff</p>
-          </a>
+    <div class="main-content main-content--patients">
+      <div class="patients-toolbar">
+        <div class="search-container">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="patientSearch" placeholder="Search by name, ID, or Ghana card..." />
+          </div>
+          <select id="searchType" class="search-type-select">
+            <option value="all">All fields</option>
+            <option value="name">Name</option>
+            <option value="id">Patient ID</option>
+            <option value="ghanaCard">Ghana Card</option>
+          </select>
         </div>
+        <button class="add-patient-btn">
+          <i class="fa-solid fa-plus"></i> Add Patient
+        </button>
       </div>
 
-      <div class="main-content main-content--patients">
-        <div class="patients-toolbar">
-          <div class="search-container">
-            <div class="search-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                id="patientSearch"
-                placeholder="Search by name, ID, or Ghana card..."
-              />
-            </div>
-            <select id="searchType" class="search-type-select">
-              <option value="all">All fields</option>
-              <option value="name">Name</option>
-              <option value="id">Patient ID</option>
-              <option value="ghanaCard">Ghana Card</option>
-            </select>
-          </div>
-          <button class="add-patient-btn">
-            <i class="fa-solid fa-plus"></i> Add Patient
-          </button>
-        </div>
-
-        <div class="table-card">
-          <div class="table-responsive">
-            <table class="patients-table">
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="patients-table">
             <thead>
               <tr>
                 <th>Patient ID</th>
@@ -131,27 +105,22 @@
               <!-- Rows populated by add-patient.js -->
             </tbody>
           </table>
-          </div>
         </div>
-
-        <p class="patients-footer">Showing 5 of 5 patients</p>
       </div>
-    </div>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
 
-    <script src="../js/Scripting.js"></script>
-    <script src="../js/nav-user-sync.js"></script>
-    <script src="../js/notification-badge.js"></script>
-    <script src="../js/retrigency-data.js"></script>
-    <script src="../js/add-patient.js"></script>
-  
-    <script src="../js/mobile-menu.js"></script>
+      <p class="patients-footer">Showing 5 of 5 patients</p>
+    </div>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script src="../js/Scripting.js"></script>
+  <script src="../js/nav-user-sync.js"></script>
+  <script src="../js/notification-badge.js"></script>
+  <script src="../js/retrigency-data.js"></script>
+  <script src="../js/add-patient.js"></script>
+
+  <script src="../js/mobile-menu.js"></script>
 </body>
+
 </html>

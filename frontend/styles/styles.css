@@ -38,7 +38,7 @@ body {
   display: block;
 }
 
-.logo-area > div {
+.logo-area>div {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -132,7 +132,7 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-.dashboard > p {
+.dashboard>p {
   color: #2c3e50;
   font-size: 18px;
   font-weight: 600;
@@ -245,10 +245,14 @@ body {
   margin: 0 0 8px 0;
 }
 
-.stats-card > p {
+.stats-card>p {
   font-size: 13px;
   color: #adb5bd;
   margin: 0;
+}
+
+.main-heading {
+  display: none;
 }
 
 .stats-card i,
@@ -518,8 +522,6 @@ body.patients-data-page .main-content--patients {
 .search-container {
   display: flex;
   gap: 12px;
-  flex: 1;
-  min-width: 280px;
   align-items: center;
 }
 
@@ -530,7 +532,7 @@ body.patients-data-page .main-content--patients {
   font-size: 14px;
   font-family: inherit;
   background: #ffffff;
-  min-width: 120px;
+  min-width: 140px;
 }
 
 .search-type-select:focus {
@@ -539,8 +541,8 @@ body.patients-data-page .main-content--patients {
 }
 
 .search-box {
-  flex: 1;
-  min-width: 200px;
+  width: 320px;
+  max-width: 100%;
   position: relative;
   display: flex;
   align-items: center;
@@ -587,6 +589,7 @@ button.add-patient-btn {
   font-family: inherit;
   cursor: pointer;
   white-space: nowrap;
+  margin-left: auto;
 }
 
 button.add-patient-btn:hover {
@@ -688,7 +691,7 @@ button.add-patient-btn:hover {
   right: 0;
   bottom: 0;
   left: 240px;
-  z-index: 1000;
+  z-index: 1300;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -720,11 +723,9 @@ button.add-patient-btn:hover {
 .add-patient-modal-content {
   position: relative;
   z-index: 1;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.85),
-    rgba(255, 255, 255, 0.64)
-  );
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.64));
   border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
@@ -794,6 +795,7 @@ button.add-patient-btn:hover {
     transform: translateY(58px) scale(0.96);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -801,11 +803,13 @@ button.add-patient-btn:hover {
 }
 
 @keyframes liquidGlassPulse {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 0.5;
   }
+
   50% {
     transform: translate3d(0, -4px, 0) scale(1.04);
     opacity: 0.74;
@@ -813,6 +817,7 @@ button.add-patient-btn:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .add-patient-modal-content,
   .add-patient-modal.add-patient-modal--open .add-patient-modal-content {
     transition: none;
@@ -1173,7 +1178,7 @@ button.add-patient-btn:hover {
 .confirm-modal {
   position: fixed;
   inset: 0;
-  z-index: 1100;
+  z-index: 1300;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1406,7 +1411,7 @@ body.dark .page-header {
   border-bottom-color: #303a49;
 }
 
-body.dark .dashboard > p,
+body.dark .dashboard>p,
 body.dark .welcome-text h1,
 body.dark .dashboard-section .section-header h2,
 body.dark .recent-activity-wrapper h2,
@@ -1428,7 +1433,7 @@ body.dark .right-side a,
 body.dark .user,
 body.dark .sub-text,
 body.dark .stat-header p,
-body.dark .stats-card > p,
+body.dark .stats-card>p,
 body.dark .card p,
 body.dark .help-intro,
 body.dark .help-section details p,
@@ -1471,7 +1476,7 @@ body.dark .photo-capture-preview {
 }
 
 /* Fix visibility for disabled/readonly fields in dark mode */
-body.dark input:disabled, 
+body.dark input:disabled,
 body.dark input[readonly],
 body.dark .profile-input:disabled,
 body.dark .form-control:disabled {
@@ -1489,11 +1494,9 @@ body.dark .add-patient-modal-overlay {
 }
 
 body.dark .add-patient-modal-content {
-  background: linear-gradient(
-    145deg,
-    rgba(18, 28, 41, 0.82),
-    rgba(13, 18, 24, 0.68)
-  );
+  background: linear-gradient(145deg,
+      rgba(18, 28, 41, 0.82),
+      rgba(13, 18, 24, 0.68));
   border-color: rgba(126, 146, 170, 0.34);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
 }
@@ -1640,10 +1643,13 @@ body.dark .mobile-menu-toggle {
 
 /* TABLET (up to 992px) */
 @media (max-width: 992px) {
-  .dashboard, .page-header, .topbar {
+
+  .dashboard,
+  .page-header,
+  .topbar {
     padding: 16px 24px;
   }
-  
+
   .main-content {
     padding: 24px;
   }
@@ -1653,9 +1659,11 @@ body.dark .mobile-menu-toggle {
   }
 
   .add-patient-modal {
-    left: 0; /* Reset bound on mobile */
+    left: 0;
+    /* Reset bound on mobile */
     padding: 24px;
   }
+
   .stats-card {
     flex: 1 1 calc(50% - 16px);
     max-width: none;
@@ -1664,7 +1672,7 @@ body.dark .mobile-menu-toggle {
   .quick-links {
     gap: 16px;
   }
-  
+
   .card-btn {
     flex: 1 1 calc(50% - 16px);
     max-width: none;
@@ -1678,8 +1686,10 @@ body.dark .mobile-menu-toggle {
 
 /* MOBILE (up to 768px) */
 @media (max-width: 768px) {
+
   /* Un-fix the sidebar wrapper so it stops squeezing main content */
-  .main-wrapper, .main-content {
+  .main-wrapper,
+  .main-content {
     margin-left: 0 !important;
   }
 
@@ -1690,14 +1700,22 @@ body.dark .mobile-menu-toggle {
   }
 
   /* Make header flex dynamic to fit the toggle and the right side */
-  .dashboard, .page-header, .top-nav {
+  .dashboard,
+  .page-header,
+  .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px;
   }
 
-  .page-header h1, .dashboard > p, .top-nav-text span {
+  .page-header h1,
+  .dashboard>p,
+  .top-nav-text {
+    display: none;
+  }
+
+  .top-nav-text span {
     font-size: 18px;
   }
 
@@ -1705,7 +1723,7 @@ body.dark .mobile-menu-toggle {
   .sidebar {
     transform: translateX(-100%);
     z-index: 999;
-    box-shadow: 4px 0 16px rgba(0,0,0,0.1);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -1715,6 +1733,14 @@ body.dark .mobile-menu-toggle {
 
   .main-content {
     padding: 16px;
+  }
+
+  .main-heading {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
   }
 
   /* Force stat cards 1 per row */
@@ -1736,9 +1762,9 @@ body.dark .mobile-menu-toggle {
     text-align: left;
   }
 
-  .card-icon-patient, 
-  .card-icon-face-id, 
-  .card-icon-view-all, 
+  .card-icon-patient,
+  .card-icon-face-id,
+  .card-icon-view-all,
   .card-icon-report {
     width: 48px;
     height: 48px;
@@ -1753,17 +1779,19 @@ body.dark .mobile-menu-toggle {
   }
 
   .search-container {
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
   }
 
   .search-box {
-    width: 100%;
+    flex: 1;
   }
-  
+
   .search-type-select {
-    width: 100%;
+    width: 140px;
+    padding: 12px 8px;
   }
-  
+
   button.add-patient-btn {
     width: 100%;
     justify-content: center;
@@ -1795,17 +1823,19 @@ body.dark .mobile-menu-toggle {
   .logo-img {
     width: 160px;
   }
-  
-  .dashboard, .page-header, .top-nav {
+
+  .dashboard,
+  .page-header,
+  .top-nav {
     flex-wrap: wrap;
     gap: 8px;
   }
-  
+
   .right-side a .notification-dot {
     top: 0px;
     right: 0px;
   }
-  
+
   .user p {
     display: none;
   }

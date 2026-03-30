@@ -177,7 +177,7 @@ if (toggle && body) {
     body.classList.toggle("dark");
     toggle.classList.toggle("active");
     const darkModeEnabled = body.classList.contains("dark");
-    localStorage.setItem("darkMode", darkModeEnabled);
+    localStorage.setItem("themeDarkMode", darkModeEnabled);
     updateThemeLogo(darkModeEnabled);
     syncSettings({ theme: darkModeEnabled ? "dark" : "light" });
   });
@@ -212,7 +212,12 @@ if (smsToggle) {
 
 // Load saved UI preferences once DOM is ready
 function applySavedUiPreferences() {
-  const darkModeEnabled = localStorage.getItem("darkMode") === "true";
+  // Enforce light mode as default if no preference is set, bypassing old cache
+  if (localStorage.getItem("themeDarkMode") === null) {
+    localStorage.setItem("themeDarkMode", "false");
+  }
+
+  const darkModeEnabled = localStorage.getItem("themeDarkMode") === "true";
   initSidebarPageTransitions();
 
   if (body) {
